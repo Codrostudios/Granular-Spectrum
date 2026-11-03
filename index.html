@@ -1,167 +1,491 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<meta name="description" content="Joyas nuevas y usadas seleccionadas por Business and Winners. Explora joyas clásicas, deportivas y exclusivas.">
-<title>Joyería | Business and Winners</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080808">
+<title>GRANULAR SPECTRUM® — Independent Electronic Music</title>
+<meta name="description" content="Granular Spectrum — independent platform for experimental, dark and uncompromising electronic music.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#090a08;--panel:#11120f;--white:#f7f4ec;--muted:#aaa79d;--gold:#c6a568;--gold2:#ead8ad;--line:rgba(214,190,139,.22);--max:1320px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{margin:0;background:var(--bg);color:var(--white);font-family:"DM Sans",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;width:100%;height:100%;object-fit:cover}
-.wrap{width:min(var(--max),calc(100% - 64px));margin:auto}
-.topline{height:3px;background:linear-gradient(90deg,#6e5428,#f2dfa9,#9b783f,#d8bf86)}
-header{position:sticky;top:0;z-index:20;background:rgba(9,10,8,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09)}
-.nav{height:84px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-.brand{display:flex;align-items:center;gap:12px}.brand img{width:auto;height:auto;max-width:205px;max-height:55px;object-fit:contain}
-.navlinks{display:flex;align-items:center;gap:27px}.navlinks a{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#dedbd4}.navlinks a:hover{color:var(--gold2)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:15px 21px;border:1px solid var(--gold);background:linear-gradient(135deg,#d8bd83,#b18b4b);color:#111;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;transition:.25s}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4)}
-.menu-toggle{display:none;background:none;color:white;border:1px solid #555;padding:9px 12px}
-.hero{min-height:630px;height:min(760px,calc(100svh - 87px));position:relative;display:flex;align-items:center;overflow:hidden;background:#13140f}
-.hero-bg{position:absolute;inset:0}.hero-bg img{filter:brightness(.54) saturate(.72);object-position:center 52%}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,4,.94),rgba(5,5,4,.68) 44%,rgba(5,5,4,.12)),linear-gradient(0deg,#090a08,transparent 28%)}
-.hero-content{position:relative;z-index:1;width:min(var(--max),calc(100% - 64px));margin:auto;padding:70px 0 100px}
-.eyebrow{display:flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.22em;font-size:10px;font-weight:700;color:var(--gold2)}
-.eyebrow:before{content:"";width:30px;height:1px;background:var(--gold)}
-h1,h2,h3{font-family:"Playfair Display",serif;font-weight:400;letter-spacing:-.035em;margin-top:0}
-h1{font-size:clamp(52px,7.3vw,98px);line-height:.99;max-width:780px;margin:25px 0}
-h1 em{font-style:normal;color:var(--gold2)}.hero p{max-width:550px;color:#e0ddd5;font-size:15px;line-height:1.9;margin-bottom:30px}
-.hero-actions{display:flex;gap:13px;flex-wrap:wrap}
-.section{padding:100px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:38px}
-h2{font-size:clamp(38px,4.6vw,62px);line-height:1.06;margin:14px 0}
-.gold{color:var(--gold2)}.lead{max-width:620px;color:var(--muted);font-size:14px;line-height:1.9}
-.type-section{background:linear-gradient(180deg,#11120f,#0b0c0a);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.type-card{position:relative;min-height:350px;padding:36px;display:flex;flex-direction:column;justify-content:end;overflow:hidden;border:1px solid rgba(234,216,173,.2);background:#171813;isolation:isolate}
-.type-card>img{position:absolute;inset:0;z-index:-2;transition:transform .7s;filter:brightness(.55) saturate(.7)}
-.type-card:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(5,5,4,.96),rgba(5,5,4,.12) 85%)}
-.type-card:hover>img{transform:scale(1.045)}
-.type-number{position:absolute;top:24px;left:27px;color:var(--gold2);font-size:10px;letter-spacing:.2em}
-.type-card h3{font-size:clamp(32px,4vw,48px);margin:0 0 8px}.type-card p{max-width:400px;color:#d5d0c5;font-size:13px;margin:0 0 23px}
-.type-card button{align-self:flex-start;display:flex;align-items:center;gap:15px;padding:13px 0 0;border:0;border-top:1px solid rgba(234,216,173,.4);background:none;color:var(--gold2);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-.type-card button span{font-size:18px;transition:transform .2s}.type-card button:hover span{transform:translateY(3px)}
-.subcategories{display:none;padding:24px 0 0;grid-template-columns:repeat(3,1fr);gap:12px}
-.subcategories.open{display:grid;animation:fadeIn .35s ease}
-.subcategory{position:relative;min-height:190px;display:flex;align-items:end;padding:20px;background:#171813;border:1px solid rgba(234,216,173,.16);overflow:hidden;transition:border-color .25s,transform .25s}
-.subcategory:hover{border-color:var(--gold);transform:translateY(-3px)}
-.subcategory img{position:absolute;inset:0;filter:brightness(.43) saturate(.65);transition:transform .5s}
-.subcategory:hover img{transform:scale(1.05)}
-.subcategory:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,4,.9),transparent 90%)}
-.subcategory strong{position:relative;z-index:1;font-family:"Playfair Display",serif;font-size:clamp(20px,2.5vw,29px);font-weight:400}
-.subcategory span{position:absolute;z-index:1;right:16px;bottom:22px;color:var(--gold2)}
-.callout{padding:78px 0;text-align:center;border-top:1px solid var(--line);background:radial-gradient(ellipse at center,rgba(198,165,104,.07),transparent 65%)}
-.callout h2{max-width:800px;margin:18px auto}.callout p{color:var(--muted);font-size:14px;max-width:560px;margin:0 auto 25px}
-footer{padding:35px 0 25px;background:#050605;border-top:1px solid var(--line)}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer-row p{font-size:10px;color:#89857b;margin:0}
-.wa-float{position:fixed;right:22px;bottom:22px;z-index:30;width:54px;height:54px;border-radius:50%;border:0;background:linear-gradient(135deg,#e3c98f,#b28d4f);color:#111;font-size:22px;box-shadow:0 8px 30px #0006}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:900px){.navlinks{gap:15px}.nav-cta{display:none}.type-card{min-height:320px;padding:27px}}
-@media(max-width:700px){
- .wrap{width:calc(100% - 38px)}.nav{height:72px}.brand img{max-width:165px;max-height:45px}.menu-toggle{display:block}
- .navlinks{display:none;position:absolute;top:72px;left:0;right:0;background:#090a08;border-bottom:1px solid var(--line);padding:14px 22px 22px;flex-direction:column;align-items:stretch;gap:0}
- .navlinks.open{display:flex}.navlinks a{padding:14px 0;border-bottom:1px solid #ffffff12}
- .hero{height:680px;min-height:0;max-height:calc(100svh - 72px)}.hero-content{width:calc(100% - 38px);padding:45px 0 75px}
- .hero h1{font-size:clamp(48px,12vw,72px)}.hero p{font-size:14px}.hero-actions .btn{width:100%}
- .section{padding:72px 0}.section-head{align-items:start;flex-direction:column;gap:12px}
- .type-grid{grid-template-columns:1fr;gap:13px}.type-card{min-height:310px;padding:24px}.type-number{top:18px;left:20px}
- .subcategories{grid-template-columns:1fr;gap:10px}.subcategory{min-height:170px}
- .callout{padding:60px 0}.footer-row{align-items:flex-start;flex-direction:column}
- .wa-float{right:15px;bottom:15px}
+:root{--bg:#080808;--fg:#e9e9e4;--muted:#777873;--line:#30312e;--acid:#d4ff38;--mono:'Space Mono',monospace;--display:'Barlow Condensed',Impact,sans-serif;--mx:50vw;--my:50vh}
+*{box-sizing:border-box}html{scroll-behavior:auto;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden;cursor:crosshair}::selection{background:var(--acid);color:#080808}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}.noise{position:fixed;inset:-50%;z-index:20;pointer-events:none;opacity:.075;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");animation:grain .22s steps(2) infinite}@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}
+#field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.8}.cursor{position:fixed;left:0;top:0;width:18px;height:18px;border:1px solid var(--acid);border-radius:50%;z-index:50;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}.cursor.big{width:70px;height:70px}.wrap{position:relative;z-index:2}.topbar{position:fixed;z-index:30;top:0;left:0;width:100%;padding:22px 3.2vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff20;backdrop-filter:blur(10px);background:#08080855}.brand{font-size:12px;letter-spacing:.13em;font-weight:bold}.brand span{color:var(--acid)}.nav{display:flex;gap:30px;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.nav a{color:#aaa;transition:color .2s}.nav a:hover{color:var(--acid)}.menu{display:none;background:none;border:0;font-size:10px;letter-spacing:.1em}.hero{min-height:100svh;padding:145px 3.2vw 45px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:9px;letter-spacing:.13em;text-transform:uppercase}.hero-center{position:relative;margin:8vh 0 5vh}.eyebrow{font-size:10px;letter-spacing:.2em;color:var(--acid);margin-bottom:15px}.hero h1{font:900 clamp(86px,18.3vw,290px)/.72 var(--display);letter-spacing:-.065em;margin:0;text-transform:uppercase;position:relative;z-index:2}.hero h1 .line{display:block;white-space:nowrap}.hero h1 .outline{color:transparent;-webkit-text-stroke:1px #d9d9d2}.hero h1 .offset{padding-left:12vw}.hero-copy{max-width:310px;margin:35px 0 0 auto;font-size:10px;line-height:1.9;color:#aaa}.hero-bottom{display:flex;justify-content:space-between;align-items:end;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}.scroll-cue{display:flex;align-items:center;gap:12px}.scroll-cue i{width:45px;height:1px;background:var(--acid);display:block}.crosshair{position:absolute;width:38vw;aspect-ratio:1;border:1px solid #ffffff18;border-radius:50%;right:8%;top:16%;pointer-events:none;animation:rotate 28s linear infinite}.crosshair:before,.crosshair:after{content:"";position:absolute;inset:13%;border:1px solid #ffffff15;border-radius:50%}.crosshair:after{inset:29%;border-style:dashed}@keyframes rotate{to{transform:rotate(360deg)}}
+.section{padding:130px 3.2vw;position:relative;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:70px}.index{font-size:10px;color:var(--acid);letter-spacing:.15em}.section h2{font:800 clamp(55px,10vw,145px)/.82 var(--display);letter-spacing:-.04em;margin:0;text-transform:uppercase}.section-note{max-width:230px;color:var(--muted);font-size:9px;line-height:1.8;text-align:right}.manifesto{min-height:75vh;display:flex;align-items:center}.manifesto-text{font:700 clamp(38px,7vw,100px)/.98 var(--display);text-transform:uppercase;max-width:1100px;letter-spacing:-.025em}.manifesto-text span{color:transparent;-webkit-text-stroke:1px #aaa}.manifesto-text .acid{color:var(--acid);-webkit-text-stroke:0}.releases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:55px 22px}.release{display:block;cursor:pointer}.cover{aspect-ratio:1/1;background:#151615;position:relative;overflow:hidden;border:1px solid #ffffff1a}.cover canvas{width:100%;height:100%;display:block}.cover .cover-code{position:absolute;top:18px;left:18px;font-size:9px;color:#bbb;letter-spacing:.15em}.cover .cover-title{position:absolute;bottom:18px;left:18px;font:800 clamp(35px,6vw,85px)/.8 var(--display);letter-spacing:-.04em;max-width:85%;mix-blend-mode:screen}.cover .cover-no{position:absolute;right:18px;bottom:18px;font-size:10px;color:var(--acid)}.release-info{display:flex;justify-content:space-between;gap:15px;padding-top:15px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.release-info small{color:var(--muted);font-size:9px}.release:hover .cover{border-color:var(--acid)}.release:hover .cover-title{color:var(--acid);transform:translateX(8px)}.cover-title{transition:transform .35s,color .35s}.release-hint{font-size:9px;color:var(--muted);margin-top:8px}.artists-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 7vw}.artist{padding:23px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font:700 clamp(30px,5vw,65px)/1 var(--display);text-transform:uppercase;transition:padding .25s,color .25s}.artist:hover{padding-left:18px;color:var(--acid)}.artist small{font:9px var(--mono);color:var(--muted)}.statement{padding:120px 3.2vw 150px;background:var(--acid);color:#080808}.statement .label{font-size:9px;letter-spacing:.18em}.statement h2{font:900 clamp(65px,14vw,190px)/.78 var(--display);letter-spacing:-.055em;text-transform:uppercase;margin:55px 0 35px}.statement p{font-size:10px;line-height:1.9;max-width:440px;margin-left:auto}.footer{padding:35px 3.2vw 25px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}.footer strong{color:var(--fg);font-weight:400}.footer .right{text-align:right}.backtop{color:var(--acid)}.reveal{opacity:0;transform:translateY(35px);transition:opacity .9s,transform .9s}.reveal.visible{opacity:1;transform:translateY(0)}.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;white-space:nowrap;color:#777;font:700 25px var(--display);letter-spacing:.08em}.ticker span{display:inline-block;animation:ticker 30s linear infinite}@keyframes ticker{to{transform:translateX(-50%)}}
+@media(max-width:700px){.topbar{padding:18px 5vw}.nav{display:none;position:absolute;top:58px;left:0;width:100%;padding:25px 5vw;background:#080808f2;flex-direction:column;gap:22px;border-bottom:1px solid var(--line)}.nav.open{display:flex}.menu{display:block}.hero{padding:125px 5vw 30px;min-height:90svh}.hero-meta{font-size:8px}.hero h1{font-size:21vw}.hero h1 .offset{padding-left:5vw}.crosshair{width:70vw;right:-8%;top:25%}.hero-copy{margin-top:30px}.section{padding:90px 5vw}.section-head{margin-bottom:45px;gap:20px}.section-note{max-width:130px;font-size:8px}.releases{gap:35px 12px}.release-info{font-size:8px;flex-direction:column;gap:5px}.cover .cover-title{font-size:12vw}.artists-grid{grid-template-columns:1fr}.artist{font-size:45px}.manifesto{min-height:65vh}.statement{padding:90px 5vw}.statement p{margin-left:0}.footer{padding:28px 5vw;grid-template-columns:1fr 1fr}.footer .right{grid-column:1/-1;text-align:left}.cursor{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* GRANULAR SPECTRUM / EXPERIMENTAL INTERACTION LAYER */
+:root{--scroll:0;--glow-x:50%;--glow-y:50%}
+#shader-field{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.62;mix-blend-mode:screen}
+.wrap{z-index:2}.topbar{transition:background .4s,border-color .4s}.topbar.scrolled{background:#080808d9;border-color:#d4ff3840}
+.signal-progress{position:fixed;z-index:60;top:0;left:0;height:2px;width:100%;transform-origin:left;transform:scaleX(var(--scroll));background:var(--acid);box-shadow:0 0 15px #d4ff3880;pointer-events:none}
+.hero h1{will-change:transform,filter}.hero h1 .line{transition:letter-spacing .6s}.hero:hover h1 .line:first-child{letter-spacing:-.085em}.hero-center:after{content:"";position:absolute;inset:-10% -5%;pointer-events:none;background:radial-gradient(500px circle at var(--glow-x) var(--glow-y),#d4ff380b,transparent 65%)}
+.release{position:relative;transform-style:preserve-3d;will-change:transform}.release .cover{transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}.release:hover .cover{filter:contrast(1.2)}.release:after{content:"OPEN TRANSMISSION ↗";position:absolute;right:14px;top:14px;font-size:8px;letter-spacing:.12em;color:var(--acid);opacity:0;transform:translateY(5px);transition:.25s;pointer-events:none}.release:hover:after{opacity:1;transform:none}
+.cover canvas{transition:filter .5s,transform 1s}.release:hover .cover canvas{filter:contrast(1.4) brightness(1.2);transform:scale(1.04)}
+.manifesto-text span,.manifesto-text{will-change:transform}.artist{position:relative;overflow:hidden}.artist:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .45s}.artist:hover:after{transform:scaleX(1)}
+.release-modal{position:fixed;inset:0;z-index:80;background:#080808f5;backdrop-filter:blur(22px);display:grid;place-items:center;padding:6vw;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}.release-modal.open{opacity:1;visibility:visible}.modal-close{position:absolute;right:3vw;top:28px;background:none;border:0;color:var(--acid);font-size:10px;letter-spacing:.15em;cursor:pointer}.modal-inner{width:min(1100px,100%);max-height:90vh;overflow:auto}.modal-index{font-size:9px;color:var(--acid);letter-spacing:.2em;margin-bottom:25px}.modal-grid{display:grid;grid-template-columns:minmax(250px,.9fr) 1.1fr;gap:6vw;align-items:center}.modal-art{aspect-ratio:1;background:radial-gradient(ellipse at 50% 50%,#464a40 0,#171a17 35%,#080808 72%);border:1px solid #ffffff30;position:relative;overflow:hidden;display:grid;place-items:center}.modal-art:before,.modal-art:after{content:"";position:absolute;width:130%;height:1px;background:#d4ff3880;transform:rotate(-32deg);box-shadow:0 0 40px #d4ff38}.modal-art:after{transform:rotate(57deg);opacity:.5}.modal-art span{font:900 clamp(55px,9vw,120px)/.75 var(--display);letter-spacing:-.07em;text-align:center;z-index:2;color:#eee;mix-blend-mode:difference}.modal-art-noise{position:absolute;inset:-50%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='x'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23x)' opacity='.5'/%3E%3C/svg%3E");opacity:.35;animation:grain .2s steps(2) infinite}.modal-copy h2{font:900 clamp(65px,10vw,135px)/.76 var(--display);letter-spacing:-.06em;margin:25px 0}.modal-copy p{font-size:10px;color:#aaa;line-height:2;max-width:390px}.waveform{height:65px;display:flex;align-items:center;gap:3px;margin:35px 0 25px;overflow:hidden}.waveform i{display:block;flex:1;min-width:2px;background:var(--acid);opacity:.65;height:var(--bar);transform-origin:center;animation:wave var(--speed) ease-in-out infinite alternate;animation-delay:var(--delay)}@keyframes wave{to{transform:scaleY(.18);opacity:.25}}.modal-meta{display:flex;gap:30px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:8px;color:var(--muted);letter-spacing:.12em}.modal-meta b{display:block;color:#eee;font-weight:400;margin-top:7px}.modal-link{display:inline-block;margin-top:28px;padding:16px 20px;border:1px solid var(--acid);color:var(--acid);font-size:9px;letter-spacing:.12em;transition:background .25s,color .25s}.modal-link:hover{background:var(--acid);color:#080808}
+@media(max-width:700px){.modal-grid{grid-template-columns:1fr;gap:30px}.modal-art{max-height:42vh}.release-modal{padding:70px 5vw 30px}.modal-copy h2{font-size:19vw}.modal-meta{gap:15px}}
+@media(pointer:coarse){#shader-field{opacity:.35}.release .cover{transform:none!important}}
+
+
+/* LIQUID PASS: visible fluid wake and displacement of the actual page */
+#liquid-field{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:1}
+.wrap.liquid-active{filter:none}
+.liquid-cursor-core{display:none;position:fixed;z-index:49;left:0;top:0;width:clamp(100px,15vw,210px);height:clamp(100px,15vw,210px);border-radius:50%;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.6);background:radial-gradient(circle,rgba(212,255,56,.19),rgba(212,255,56,.07) 35%,rgba(235,245,220,.045) 52%,transparent 72%);filter:blur(8px);mix-blend-mode:screen;transition:opacity .2s,transform .25s}
+body.liquid-on .liquid-cursor-core{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media(pointer:coarse){#liquid-field,.liquid-cursor-core{display:none}.wrap.liquid-active{filter:none}}
+@media(prefers-reduced-motion:reduce){#liquid-field,.liquid-cursor-core{display:none}.wrap.liquid-active{filter:none}}
+
+
+/* Configurable logo and release image presentation */
+.brand-image{display:flex;align-items:center;min-width:150px;min-height:28px}
+.brand-image img{display:block;max-width:210px;max-height:42px;width:auto;height:auto;object-fit:contain}
+.brand-image i{font-style:normal;color:var(--acid);padding:0 3px}
+.cover{background:#111}
+.cover .release-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s;z-index:0}
+.release:hover .release-artwork{transform:scale(1.055);filter:contrast(1.12) brightness(.82)}
+.cover-code,.cover-title,.cover-no{z-index:1}
+.cover-title{pointer-events:none;text-shadow:0 2px 20px #0009}
+.cover.artwork-missing:before{content:"ARTWORK / IMAGE URL";position:absolute;inset:0;display:grid;place-items:center;color:#777;font-size:9px;letter-spacing:.2em}
+.nav{align-items:center}
+.nav a{white-space:nowrap}
+#liquid-field{z-index:1!important;opacity:1!important;pointer-events:none!important;display:block!important;filter:contrast(1.22) saturate(1.35)}
+#shader-field{z-index:0!important}
+#field{z-index:0!important}
+.noise{z-index:20}
+.wrap{z-index:2}
+.topbar{z-index:30}
+@media(max-width:760px){
+ .brand-image img{max-width:155px;max-height:34px}
+ .nav{position:absolute;top:100%;left:0;right:0;padding:22px 5vw;background:#080808f2;display:none;flex-direction:column;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line)}
+ .nav.open{display:flex}
+ .menu{display:block}
 }
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* GRANULAR SPECTRUM — DEEP BLACK ART DIRECTION */
+:root{
+  --bg:#020202;
+  --fg:#e9e9e4;
+  --muted:#696a65;
+  --line:#1b1c19;
+}
+html,body{background:#020202!important}
+body{background-color:#020202!important}
+#field,#shader-field,#liquid-field{background:transparent}
+.modal-art{
+  background:radial-gradient(ellipse at 50% 48%,#11150b 0%,#080907 27%,#030303 64%,#020202 100%);
+}
+.release-card,.artist-card,.panel,.menu-panel{background-color:#050605}
+header,.site-header{background-color:rgba(2,2,2,.94)}
+/* Preserve the acid-green identity while reducing ambient grey/green haze. */
+
+
+/* DEEP BLACK — stronger visual correction */
+:root{--bg:#000000;--fg:#f0f0eb;--muted:#555650;--line:#171815}
+html,body{background:#000!important}
+body{background:#000!important}
+.topbar{background:rgba(0,0,0,.94)!important;border-bottom-color:#171815!important;backdrop-filter:blur(18px)}
+.topbar.scrolled{background:rgba(0,0,0,.98)!important}
+.hero,.section,.footer{background:#000!important}
+.section{border-top-color:#141512!important}
+.cover{background:#030303!important;border-color:#191a17!important}
+.release:hover .cover{border-color:var(--acid)!important}
+.statement{
+  background:#030403!important;
+  color:#e9e9e4!important;
+  border-top:1px solid #20221a;
+  border-bottom:1px solid #20221a;
+  position:relative;
+}
+.statement:before{
+  content:"";
+  position:absolute;
+  left:3.2vw;top:0;
+  width:68px;height:2px;
+  background:var(--acid);
+  box-shadow:0 0 18px #d4ff3880;
+}
+.statement .label{color:var(--acid)!important}
+.statement h2{color:#e9e9e4!important}
+.statement p{color:#85867f!important}
+.modal-art{
+  background:radial-gradient(ellipse at 50% 50%,#090b06 0%,#030403 24%,#010101 65%,#000 100%)!important;
+  border-color:#20221a!important;
+}
+.release-modal{background:rgba(0,0,0,.985)!important}
+.nav.open{background:rgba(0,0,0,.99)!important}
+.crosshair{border-color:#ffffff0b}
+.crosshair:before,.crosshair:after{border-color:#ffffff0a}
+.hero h1 .outline{color:#f2f2ed!important;-webkit-text-stroke:0!important;text-shadow:0 0 24px #ffffff12!important}
+.hero-copy,.modal-copy p{color:#888!important}
+.ticker{color:#555!important;border-color:#171815!important}
+.footer{border-top-color:#171815!important;color:#555!important}
+.artist{border-top-color:#171815!important}
+::selection{background:var(--acid);color:#000}
+
+
+/* LIQUID BACKGROUND — visible only behind page content */
+#liquid-field{display:block!important;isolation:isolate;mix-blend-mode:screen}
+#field,#shader-field{pointer-events:none!important}
+.wrap{position:relative;z-index:2!important}
+.topbar{position:fixed!important;z-index:30!important}
+.noise{position:fixed!important;z-index:20!important}
+#liquid-field{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:1!important;display:block!important;pointer-events:none!important;opacity:1!important;mix-blend-mode:screen!important}
+
+
+.hero h1 .outline{color:#f2f2ed!important;-webkit-text-stroke:0!important;text-shadow:0 0 24px #ffffff12!important}
+#liquid-field{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:1!important;display:block!important;pointer-events:none!important;opacity:1!important;mix-blend-mode:screen!important}
+.wrap{position:relative!important;z-index:2!important}
+.topbar{position:fixed!important;z-index:30!important}
+.noise{position:fixed!important;z-index:20!important}
+
+.video-transmission{padding-top:105px;padding-bottom:110px}
+.video-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:42px}
+.video-head h2{font:800 clamp(55px,10vw,145px)/.82 var(--display);letter-spacing:-.04em;margin:18px 0 0;text-transform:uppercase}
+.youtube-frame{position:relative;width:100%;aspect-ratio:16/9;background:#050605;border:1px solid #ffffff24;overflow:hidden}
+.youtube-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.youtube-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at center,#15190c 0%,#050605 55%,#020202 100%);color:var(--acid);font-size:10px;letter-spacing:.18em}
+.youtube-placeholder small{font-size:8px;color:#777;letter-spacing:.12em}
+.video-foot{display:flex;justify-content:space-between;padding-top:13px;font-size:8px;color:var(--muted);letter-spacing:.16em}
+@media(max-width:700px){.video-transmission{padding-top:75px;padding-bottom:80px}.video-head{align-items:flex-start;flex-direction:column;margin-bottom:30px}.video-head .section-note{text-align:left;max-width:260px}.youtube-frame{aspect-ratio:16/9}.video-foot{font-size:7px}}
+
+
+/* RELEASE ARTWORK — visible cards and clear fallback for missing URLs */
+.release.reveal{opacity:1;transform:none}
+.cover{isolation:isolate}
+.cover .release-artwork{z-index:0}
+.cover.artwork-missing:before{
+  content:"ADD COVER IMAGE URL";
+  position:absolute;inset:0;display:grid;place-items:center;
+  color:#777;font-size:9px;letter-spacing:.18em;
+  background:radial-gradient(ellipse at center,#11150b 0%,#050505 58%,#000 100%);
+  z-index:0
+}
+
 </style>
 </head>
 <body>
-<div class="topline"></div>
-<header>
- <div class="wrap nav">
-  <a class="brand" href="Business_and_Winners_Home_Actualizado.html" aria-label="Business and Winners, inicio">
-   <img src="https://res.cloudinary.com/rgriiass/image/upload/v1792172339/bussines--logo.png" alt="Business and Winners by Jeiz">
-  </a>
-  <nav class="navlinks" id="navlinks">
-   <a href="Business_and_Winners_Home_Actualizado.html">Inicio</a>
-   <a href="#tipos">Joyería</a>
-   <a href="#tipos">Categorías</a>
-   <a href="#contacto">Contacto</a>
-  </nav>
-  <a class="btn nav-cta" href="#contacto">Consultar <span>↗</span></a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
- </div>
-</header>
-<main>
-<section class="hero" id="inicio">
- <div class="hero-bg"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=2200&q=90" alt="Joyería dorada fotografiada en estudio"></div>
- <div class="hero-content">
-  <div class="eyebrow">Business and Winners · Joyería</div>
-  <h1>Joyas que cuentan<br><em>tu historia.</em></h1>
-  <p>Descubre piezas seleccionadas para cada estilo y ocasión. Explora nuestra joyería nueva y usada, y encuentra esa pieza especial que conecta contigo.</p>
-  <div class="hero-actions"><a class="btn" href="#tipos">Explorar joyería <span>↗</span></a><a class="btn outline" href="#tipos">Ver categorías <span>↓</span></a></div>
- </div>
+<canvas id="field"></canvas><canvas id="shader-field" aria-hidden="true"></canvas><canvas id="liquid-field" aria-hidden="true"></canvas>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute"><filter id="gsLiquid" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence id="gsTurbulence" type="fractalNoise" baseFrequency="0.009 0.014" numOctaves="2" seed="7" result="warp"/><feDisplacementMap id="gsDisplacement" in="SourceGraphic" in2="warp" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="noise"></div><div class="cursor" id="cursor"></div>
+<header class="topbar">
+<a class="brand brand-image" id="siteLogoLink" href="index.html" aria-label="Granular Spectrum home"><img id="siteLogo" alt="Granular Spectrum" src="" style="display:none"><span id="siteLogoFallback">GRANULAR <i>/</i> SPECTRUM®</span></a>
+<nav class="nav" id="nav"></nav><button class="menu" id="menu" aria-label="Open menu">MENU +</button></header>
+<main class="wrap" id="top">
+<section class="hero"><div class="hero-meta"><span>Independent electronic music platform</span><span>Medellín / Berlin / Worldwide — Est. 2021</span></div><div class="hero-center"><div class="crosshair"></div><div class="eyebrow">[ GS—001 / Frequency is a territory ]</div><h1 id="heroTitle"><span class="line">GRANULAR</span><span class="line outline offset">SPECTRUM</span></h1><p class="hero-copy">A platform for sound outside the frame. Exploring the edges of techno, industrial pressure, hypnotic structures and experimental frequencies.</p></div><div class="hero-bottom"><span>Sound as an experiment.</span><span class="scroll-cue"><i></i> Scroll to enter</span><span>00°00' / 00°00'</span></div></section>
+<div class="ticker"><span>NOISE IS A LANGUAGE&nbsp; — &nbsp;SOUND AS AN EXPERIMENT&nbsp; — &nbsp;BEYOND THE GRID&nbsp; — &nbsp;NOISE IS A LANGUAGE&nbsp; — &nbsp;SOUND AS AN EXPERIMENT&nbsp; — &nbsp;BEYOND THE GRID&nbsp; — &nbsp;</span></div>
+<section class="section video-transmission reveal" id="transmission">
+  <div class="video-head">
+    <div>
+      <div class="index">[A/V]</div>
+      <h2 id="youtubeTitle">Darkduction Live<br>Audiovisual Concert<span style="color:var(--acid)">.</span></h2>
+    </div>
+    <p class="section-note" id="youtubeCaption">A moving image transmission from the Granular Spectrum archive.</p>
+  </div>
+  <div class="youtube-frame" id="youtubeFrame">
+    <div class="youtube-placeholder"><span>YOUTUBE / EMBED</span><small>ADD YOUR VIDEO URL IN GS_SITE.youtube.url</small></div>
+  </div>
+  <div class="video-foot"><span>GS — TRANSMISSION</span><span>PLAY / FULL SIGNAL ↗</span></div>
 </section>
-<section class="section type-section" id="tipos">
- <div class="wrap">
-  <div class="section-head">
-   <div><div class="eyebrow">Encuentra tu próxima pieza</div><h2>Explora por tipo de <span class="gold">joyería.</span></h2><p class="lead">Elige entre joyería nueva o usada. Cada opción despliega sus categorías para que explores de forma sencilla.</p></div>
-  </div>
-  <div class="type-grid">
-   <article class="type-card">
-    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=90" alt="Anillo de joyería nueva">
-    <span class="type-number">01 / COLECCIÓN</span><h3>Joyería Nueva</h3><p>Piezas nuevas seleccionadas, listas para convertirse en parte de tu historia.</p>
-    <button type="button" class="category-toggle" data-target="newCategories" aria-expanded="false">Ver categorías <span>↓</span></button>
-   </article>
-   <article class="type-card">
-    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=1200&q=90" alt="Joyería dorada de segunda mano">
-    <span class="type-number">02 / SELECCIÓN</span><h3>Joyería Usada</h3><p>Joyas con carácter y personalidad, seleccionadas para una nueva etapa.</p>
-    <button type="button" class="category-toggle" data-target="usedCategories" aria-expanded="false">Ver categorías <span>↓</span></button>
-   </article>
-  </div>
-  <div class="subcategories" id="newCategories" aria-label="Categorías de joyería nueva">
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Clásicas</strong><span>↗</span></a>
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Deportivas</strong><span>↗</span></a>
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Exclusivas</strong><span>↗</span></a>
-  </div>
-  <div class="subcategories" id="usedCategories" aria-label="Categorías de joyería usada">
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Clásicas</strong><span>↗</span></a>
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Deportivas</strong><span>↗</span></a>
-   <a class="subcategory" href="#tipos"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=85" alt=""><strong>Joyas Exclusivas</strong><span>↗</span></a>
-  </div>
 
- </div>
-</section>
-<section class="callout" id="contacto"><div class="wrap"><div class="eyebrow" style="justify-content:center">Business and Winners</div><h2>¿Buscas una joya <span class="gold">especial?</span></h2><p>Cuéntanos qué tipo de pieza tienes en mente y te ayudaremos a encontrar la opción adecuada.</p><a class="btn" href="https://wa.me/" id="contactButton">Consultar por WhatsApp <span>↗</span></a></div></section>
+<section class="section manifesto reveal" id="about"><div><div class="index">[POSITION / STATEMENT ]</div><p class="manifesto-text">WHERE EXPERIMENTATION <span>MEETS EXPRESSION.</span> SOUND WITHOUT <span class="acid">LIMITS.</span></p></div></section>
+<section class="section" id="releases"><div class="section-head reveal"><div><div class="index">[ DISCOGRAPHY ]</div><h2>GS<br>releases<span style="color:var(--acid)">.</span></h2></div><p class="section-note">A growing archive of independent sound. Frequencies, experiments and uncompromising electronic music.</p></div>
+<div class="releases" id="releaseGrid"></div></section>
+<section class="section" id="artists"><div class="section-head reveal"><div><div class="index">[ SOUND DESIGNERS ]</div><h2>Artists<span style="color:var(--acid)">.</span></h2></div><p class="section-note">Producers, sound designers and artists working across the spectrum of experimental electronic music.</p></div><div class="artists-grid reveal"><a class="artist" href="https://granularspectrum.bandcamp.com/" target="_blank">DARKDUCTION <small>WORLDWIDE ↗</small></a><a class="artist" href="https://granularspectrum.bandcamp.com/" target="_blank">SHAKTI <small>WORLDWIDE ↗</small></a><a class="artist" href="https://granularspectrum.bandcamp.com/" target="_blank">DRKDCTN <small>WORLDWIDE ↗</small></a><a class="artist" href="https://granularspectrum.bandcamp.com/" target="_blank">INDIVIDUO ATEMPORAL <small>WORLDWIDE ↗</small></a></div></section>
+<section class="statement"><div class="label">[ TRANSMISSION / END OF SIGNAL ]</div><h2>NO<br>SONIC<br>LIMITS.</h2><p>Granular Spectrum is an independent record label and platform dedicated to the exploration of dark, experimental and forward-thinking electronic music. No fixed genre. No expected outcome. Only sound in transformation.</p></section>
+<footer class="footer"><div><strong>GRANULAR SPECTRUM®</strong><br>Independent electronic music</div><div>Medellín / Colombia<br><a href="https://granularspectrum.bandcamp.com/" target="_blank">Bandcamp ↗</a></div><div class="right"><a href="mailto:contact@granularspectrum.com">Contact ↗</a><br><a class="backtop" href="#top">Back to top ↑</a><br>© <span id="year"></span> — All frequencies reserved.</div></footer>
 </main>
-<footer><div class="wrap footer-row"><a class="brand" href="Business_and_Winners_Home_Actualizado.html"><img src="https://res.cloudinary.com/rgriiass/image/upload/v1792172339/bussines--logo.png" alt="Business and Winners"></a><p>© <span id="year"></span> Business and Winners · by Jeiz</p></div></footer>
-<button class="wa-float" id="waButton" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">↗</button>
+<div class="signal-progress" id="signalProgress"></div>
+<div class="release-modal" id="releaseModal" aria-hidden="true">
+  <button class="modal-close" id="modalClose" aria-label="Close release">[ CLOSE × ]</button>
+  <div class="modal-inner">
+    <div class="modal-index" id="modalIndex">GS / AUDIO OBJECT</div>
+    <div class="modal-grid">
+      <div class="modal-art" id="modalArt"><div class="modal-art-noise"></div><span id="modalArtTitle">FORM_01</span></div>
+      <div class="modal-copy"><div class="index">[ TRANSMISSION / RELEASE DATA ]</div><h2 id="modalTitle">FORM<br>_01</h2><p id="modalDescription">An exploration of pressure, repetition and unstable sonic architecture.</p><div class="waveform" id="waveform" aria-label="Decorative audio waveform"></div><div class="modal-meta"><span>FORMAT <b>DIGITAL / BANDCAMP</b></span><span>STATUS <b>AVAILABLE</b></span></div><a class="modal-link" id="modalBandcamp" href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener">LISTEN / PURCHASE ON BANDCAMP ↗</a></div>
+    </div>
+  </div>
+</div>
 <script>
-const menuToggle=document.getElementById('menuToggle');
-const navlinks=document.getElementById('navlinks');
-menuToggle.addEventListener('click',()=>{const open=navlinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.textContent=open?'×':'☰';});
-navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.textContent='☰';}));
-document.querySelectorAll('.category-toggle').forEach(button=>button.addEventListener('click',()=>{
- const target=document.getElementById(button.dataset.target);
- const open=!target.classList.contains('open');
- document.querySelectorAll('.subcategories').forEach(panel=>{
-   panel.classList.remove('open');
- });
- document.querySelectorAll('.category-toggle').forEach(other=>{
-   other.setAttribute('aria-expanded','false');
-   other.querySelector('span').textContent='↓';
- });
- if(open){
-   target.classList.add('open');
-   button.setAttribute('aria-expanded','true');
-   button.querySelector('span').textContent='↑';
-   target.scrollIntoView({behavior:'smooth',block:'nearest'});
- }
-}));
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cursor=document.getElementById('cursor');let mx=innerWidth/2,my=innerHeight/2,px=mx,py=my;
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY; if(cursor){cursor.style.left=mx+'px';cursor.style.top=my+'px'}});
+document.querySelectorAll('a,button,.release').forEach(el=>{el.addEventListener('pointerenter',()=>cursor?.classList.add('big'));el.addEventListener('pointerleave',()=>cursor?.classList.remove('big'))});
+const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{nav.classList.toggle('open');menu.textContent=nav.classList.contains('open')?'CLOSE −':'MENU +'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 document.getElementById('year').textContent=new Date().getFullYear();
-const waUrl='https://wa.me/';
-document.getElementById('waButton').addEventListener('click',()=>window.open(waUrl,'_blank','noopener'));
+// Global generative field: particle lines bend around the pointer.
+const canvas=document.getElementById('field'),ctx=canvas.getContext('2d');let w,h,dpr,particles=[];
+function resize(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);particles=Array.from({length:Math.min(950,Math.floor(w*h/1500))},()=>({x:Math.random()*w,y:Math.random()*h,ox:Math.random()*w,oy:Math.random()*h,a:Math.random()*6.28,r:Math.random()*1.3+.2,s:Math.random()*.45+.08}))}addEventListener('resize',resize);resize();
+function frame(t){ctx.clearRect(0,0,w,h);const time=t*.00018;for(let i=0;i<particles.length;i++){const p=particles[i];const dx=mx-p.x,dy=my-p.y,dist=Math.sqrt(dx*dx+dy*dy)+.01;const influence=Math.max(0,1-dist/230);const flow=Math.sin(p.ox*.009+time*8)+Math.cos(p.oy*.011-time*5);p.x+=Math.cos(p.a+flow*.35)*p.s+(dx/dist)*influence*-.75;p.y+=Math.sin(p.a+flow*.35)*p.s+(dy/dist)*influence*-.75;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.fillStyle=`rgba(220,225,210,${.12+influence*.38})`;ctx.fillRect(p.x,p.y,p.r,p.r);if(i%7===0&&dist<145){ctx.strokeStyle=`rgba(212,255,56,${influence*.12})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mx,my);ctx.stroke()}}if(!reduce)requestAnimationFrame(frame)}requestAnimationFrame(frame);
+// Reveal elements as they enter the viewport.
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Album-cover canvases are procedural artwork, not stock images.
+document.querySelectorAll('canvas.art').forEach((c,idx)=>{const g=c.getContext('2d');let cw,ch;function draw(){const r=c.getBoundingClientRect();cw=Math.max(1,Math.floor(r.width));ch=Math.max(1,Math.floor(r.height));const d=Math.min(devicePixelRatio||1,2);c.width=cw*d;c.height=ch*d;g.setTransform(d,0,0,d,0,0);g.fillStyle=['#111311','#171918','#101112','#151515'][idx];g.fillRect(0,0,cw,ch);const kind=c.dataset.kind;g.save();g.translate(cw/2,ch/2);if(kind==='fold'){for(let i=0;i<100;i++){g.rotate(.08);g.strokeStyle=`rgba(220,225,210,${.025+i*.0009})`;g.lineWidth=1+(i%4)*.4;g.beginPath();g.ellipse(0,0,cw*.08+i*cw*.003,ch*.12+i*ch*.003,Math.sin(i)*.3,0,Math.PI*1.65);g.stroke()}}else if(kind==='field'){for(let i=0;i<150;i++){g.beginPath();let x=(Math.random()-.5)*cw,y=(Math.random()-.5)*ch;g.strokeStyle=`rgba(220,225,210,${Math.random()*.18})`;g.moveTo(x,y);g.lineTo(x+Math.random()*90-45,y+Math.random()*90-45);g.stroke()}}else if(kind==='fracture'){for(let i=0;i<85;i++){g.rotate(.12);g.strokeStyle=`rgba(230,230,220,${.05+Math.random()*.13})`;g.beginPath();g.moveTo(-cw*.6,i*5-ch*.2);g.lineTo(cw*.6,i*5-ch*.2+Math.random()*24);g.stroke()}}else{for(let i=0;i<24;i++){g.strokeStyle=`rgba(220,225,210,${.08+i*.004})`;g.lineWidth=1;g.beginPath();g.arc(0,0,12+i*9,Math.random()*6.28,Math.random()*6.28+2.8);g.stroke()} }g.restore();g.fillStyle='rgba(212,255,56,.7)';g.fillRect(cw*.08,ch*.83,cw*.13,1)}draw();addEventListener('resize',draw)});
+// Slight scroll-linked title displacement.
+if(!reduce){let ticking=false;addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const y=scrollY;document.getElementById('heroTitle').style.transform=`translate3d(${Math.sin(y*.003)*12}px,${y*.16}px,0)`;ticking=false});ticking=true}})}
+})();
 </script>
-</body>
-</html>
+<script>
+(()=>{
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const shader=document.getElementById('shader-field'),gl=shader.getContext('webgl',{alpha:true,antialias:false,powerPreference:'low-power'});
+ if(gl){
+  const vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const fs='precision highp float;uniform vec2 r,m,v;uniform float t,s;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}void main(){vec2 uv=gl_FragCoord.xy/r;vec2 q=uv;vec2 mp=m/r;float d=length((uv-mp)*vec2(r.x/r.y,1.));float pulse=exp(-d*13.)*(.025+length(v)*.12);q+=normalize(uv-mp+vec2(.0001))*pulse*sin(t*2.4-d*38.);float n=noise(q*vec2(24.,35.)+t*.12);float bands=sin((q.y*180.+n*9.+t*2.)*3.14159);float edge=smoothstep(.8,.05,d);float grain=noise(q*r*.18+t*.3);float scan=step(.985,fract(q.y*240.));vec3 c=vec3(.48,.52,.44)*(n*.12+bands*.018+grain*.05);c+=vec3(.82,.98,.22)*(pulse*2.4+scan*.035)*edge;c*=.7+sin(s*.001)*.03;gl_FragColor=vec4(c,clamp(.16+edge*.13+scan*.04,0.,.35));}';
+  function compile(type,src){const sh=gl.createShader(type);gl.shaderSource(sh,src);gl.compileShader(sh);return sh}
+  const prog=gl.createProgram();gl.attachShader(prog,compile(gl.VERTEX_SHADER,vs));gl.attachShader(prog,compile(gl.FRAGMENT_SHADER,fs));gl.linkProgram(prog);gl.useProgram(prog);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  const U=n=>gl.getUniformLocation(prog,n),ur=U('r'),um=U('m'),uv=U('v'),ut=U('t'),us=U('s');let x=innerWidth/2,y=innerHeight/2,px=x,py=y,vx=0,vy=0,scroll=0;
+  addEventListener('pointermove',e=>{x=e.clientX;y=innerHeight-e.clientY});addEventListener('scroll',()=>scroll=scrollY,{passive:true});
+  function size(){const d=Math.min(devicePixelRatio||1,1.5);shader.width=innerWidth*d;shader.height=innerHeight*d;gl.viewport(0,0,shader.width,shader.height)}addEventListener('resize',size);size();
+  function render(ms){vx+=(x-px-vx)*.12;vy+=(y-py-vy)*.12;px+=(x-px)*.12;py+=(y-py)*.12;gl.uniform2f(ur,shader.width,shader.height);gl.uniform2f(um,px*(shader.width/innerWidth),py*(shader.height/innerHeight));gl.uniform2f(uv,vx,vy);gl.uniform1f(ut,ms*.001);gl.uniform1f(us,scroll);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);if(!reduce)requestAnimationFrame(render)}requestAnimationFrame(render);
+ }
+ // Cursor light follows the pointer, including a velocity trail.
+ let tx=innerWidth/2,ty=innerHeight/2;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;document.documentElement.style.setProperty('--glow-x',tx+'px');document.documentElement.style.setProperty('--glow-y',ty+'px')},{passive:true});
+ // Scroll progress + header state + subtle parallax on the manifesto.
+ const progress=document.getElementById('signalProgress'),bar=document.querySelector('.topbar'),hero=document.getElementById('heroTitle');let raf=false;
+ addEventListener('scroll',()=>{if(raf)return;raf=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--scroll',max>0?scrollY/max:0);bar.classList.toggle('scrolled',scrollY>40);if(hero&&!reduce)hero.style.setProperty('--scroll-y',scrollY*.12+'px');raf=false})},{passive:true});
+ // Magnetic pull for primary interactive surfaces and 3D release-card tilt.
+ document.querySelectorAll('.artist,.modal-link,.brand,.nav a').forEach(el=>{el.addEventListener('pointermove',e=>{if(matchMedia('(pointer:coarse)').matches)return;const r=el.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);el.style.transform=`translate(${dx*.08}px,${dy*.12}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')});
+ document.querySelectorAll('.release').forEach(el=>{el.addEventListener('pointermove',e=>{if(matchMedia('(pointer:coarse)').matches)return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.setProperty('--rx',`${-y*8}deg`);el.style.setProperty('--ry',`${x*8}deg`)});el.addEventListener('pointerleave',()=>{el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg')})});
+ // Release detail overlay: each card becomes an explorable audio-object page.
+ const modal=document.getElementById('releaseModal'),close=document.getElementById('modalClose'),title=document.getElementById('modalTitle'),artTitle=document.getElementById('modalArtTitle'),idx=document.getElementById('modalIndex'),desc=document.getElementById('modalDescription'),band=document.getElementById('modalBandcamp');
+ const descriptions=['A study of pressure, repetition and unstable sonic architecture.','Fragments of memory translated into metallic rhythm, space and interference.','A fractured signal moving between mechanical pulse and spectral noise.','Deep structures, restrained force and frequencies beyond the visible spectrum.'];
+ document.querySelectorAll('.release').forEach((el,i)=>el.addEventListener('click',e=>{e.preventDefault();const t=el.querySelector('.cover-title').innerText.replace(/\s+/g,' '),code=el.querySelector('.cover-code').innerText;title.innerHTML=el.querySelector('.cover-title').innerHTML;artTitle.textContent=t;idx.textContent=code;desc.textContent=descriptions[i]||descriptions[0];band.href=el.href;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('waveform').innerHTML='';for(let n=0;n<100;n++){const b=document.createElement('i');b.style.setProperty('--bar',(8+Math.random()*58)+'px');b.style.setProperty('--speed',(0.35+Math.random()*.9)+'s');b.style.setProperty('--delay',(-Math.random()*1.5)+'s');document.getElementById('waveform').appendChild(b)}}));
+ function shut(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}close.addEventListener('click',shut);modal.addEventListener('click',e=>{if(e.target===modal)shut()});addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
+ // Scroll-linked type distortion on the manifesto, throttled to animation frames.
+ const statement=document.querySelector('.manifesto-text');if(statement&&!reduce){addEventListener('scroll',()=>{const r=statement.getBoundingClientRect(),p=1-Math.max(0,Math.min(1,(r.top+innerHeight)/(innerHeight+r.height)));statement.style.transform=`translateX(${Math.sin(p*7)*14}px) skewX(${Math.sin(p*5)*.7}deg)`},{passive:true})}
+})();
+</script>
+<script>
+/* GRANULAR SPECTRUM — AMBIENT LIQUID FIELD + POINTER DISTORTION
+   The fluid is always visible on black; pointer movement intensifies it.
+   Canvas is isolated behind all HTML content. */
+(()=>{
+  const canvas=document.getElementById('liquid-field');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  if(!ctx) return;
+
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarse=matchMedia('(pointer: coarse)').matches;
+  let w=innerWidth,h=innerHeight,dpr=1,last=0;
+  let mx=w*.5,my=h*.5,px=mx,py=my,vx=0,vy=0,energy=0,seen=false;
+  const blobs=[],rings=[];
+  const ambient=[
+    {x:.18,y:.30,ax:.12,ay:.10,r:260,phase:.2},
+    {x:.78,y:.66,ax:.15,ay:.13,r:330,phase:2.1},
+    {x:.52,y:.10,ax:.10,ay:.08,r:210,phase:4.2}
+  ];
+  function resize(){
+    dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;
+    canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
+    canvas.style.width=w+'px';canvas.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  addEventListener('resize',resize,{passive:true});resize();
+
+  function move(e){
+    if(coarse)return;
+    const x=e.clientX,y=e.clientY,dx=x-px,dy=y-py,speed=Math.hypot(dx,dy);
+    vx=dx;vy=dy;energy=Math.min(1,speed/22);mx=x;my=y;px=x;py=y;seen=true;
+    if(speed>1){
+      blobs.push({x,y,r:Math.min(210,55+speed*3.4),life:1,spin:Math.atan2(dy,dx),stretch:1+Math.min(2,speed/18)});
+      if(speed>4)rings.push({x,y,r:12,life:1});
+    }
+    if(blobs.length>90)blobs.shift();if(rings.length>42)rings.shift();
+  }
+  addEventListener('pointermove',move,{passive:true});
+  addEventListener('pointerdown',e=>{
+    if(coarse)return;
+    mx=e.clientX;my=e.clientY;seen=true;energy=1;
+    for(let i=0;i<5;i++)rings.push({x:mx,y:my,r:10+i*13,life:1});
+    blobs.push({x:mx,y:my,r:190,life:1,spin:0,stretch:1.7});
+  },{passive:true});
+  addEventListener('pointerleave',()=>{seen=false},{passive:true});
+
+  function glow(x,y,rx,ry,alpha,rotation=0){
+    ctx.save();ctx.translate(x,y);ctx.rotate(rotation);
+    const g=ctx.createRadialGradient(0,0,0,0,0,Math.max(rx,ry));
+    g.addColorStop(0,`rgba(210,255,55,${alpha})`);
+    g.addColorStop(.22,`rgba(170,235,35,${alpha*.72})`);
+    g.addColorStop(.52,`rgba(110,175,25,${alpha*.30})`);
+    g.addColorStop(1,'rgba(65,110,15,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.fill();ctx.restore();
+  }
+  function contour(x,y,r,alpha,phase){
+    ctx.beginPath();
+    for(let i=0;i<=180;i++){
+      const a=i/180*Math.PI*2;
+      const wobble=1+Math.sin(a*3+phase)*.045+Math.sin(a*7-phase*1.4)*.025;
+      const px=x+Math.cos(a)*r*wobble,py=y+Math.sin(a)*r*.68*wobble;
+      if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+    }
+    ctx.closePath();ctx.strokeStyle=`rgba(202,255,48,${alpha})`;ctx.lineWidth=1.15;ctx.stroke();
+  }
+  function render(now){
+    const dt=Math.min(40,now-last||16);last=now;ctx.clearRect(0,0,w,h);
+    // Permanent slow-moving fluid pools: visible even before the cursor moves.
+    ambient.forEach((a,i)=>{
+      const t=now*.00016+a.phase;
+      const x=(a.x+Math.sin(t)*a.ax)*w,y=(a.y+Math.cos(t*.83)*a.ay)*h;
+      const radius=a.r*(.92+.08*Math.sin(t*1.7));
+      ctx.save();ctx.globalCompositeOperation='screen';ctx.filter='blur(34px)';
+      glow(x,y,radius*1.18,radius*.72,.20);
+      glow(x+Math.sin(t*2)*radius*.25,y+Math.cos(t*1.6)*radius*.2,radius*.62,radius*.4,.13);
+      ctx.filter='none';
+      contour(x,y,radius*.72,.15+Math.sin(t)*.035,t*3);
+      contour(x,y,radius*.94,.085,t*2.2+1);
+      ctx.restore();
+    });
+    // Cursor-driven liquid lens and stretched wake.
+    if(seen&&!coarse){
+      const follow=.28;const oldX=pointer.x||mx,oldY=pointer.y||my;
+      pointer.x=oldX+(mx-oldX)*follow;pointer.y=oldY+(my-oldY)*follow;
+      const speed=Math.hypot(vx,vy),radius=150+Math.min(190,speed*3.2);
+      ctx.save();ctx.globalCompositeOperation='screen';ctx.filter='blur(28px)';
+      glow(pointer.x,pointer.y,radius,radius*.72,.64+energy*.30);
+      glow(pointer.x-vx*2.2,pointer.y-vy*2.2,radius*1.15,radius*.42,.48+energy*.25,Math.atan2(vy,vx));
+      ctx.filter='none';
+      for(let i=0;i<5;i++)contour(pointer.x,pointer.y,radius*(.42+i*.19),.34-i*.045,now*.002+i);
+      ctx.restore();
+    }
+    ctx.save();ctx.globalCompositeOperation='screen';
+    blobs.forEach(b=>{
+      b.life-=dt*.00023;b.r*=.999;
+      if(b.life>0){
+        ctx.save();ctx.translate(b.x,b.y);ctx.rotate(b.spin);
+        ctx.filter='blur(18px)';glow(0,0,b.r*b.stretch,b.r*.52,b.life*.55);
+        ctx.filter='none';contour(0,0,b.r*.72,b.life*.52,now*.003+b.spin);ctx.restore();
+      }
+    });
+    rings.forEach(r=>{
+      r.life-=dt*.00032;r.r+=dt*.11;
+      if(r.life>0){ctx.beginPath();ctx.ellipse(r.x,r.y,r.r*1.35,r.r*.82,0,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(210,255,55,${r.life*.8})`;ctx.lineWidth=2;ctx.stroke();
+        ctx.beginPath();ctx.ellipse(r.x,r.y,r.r*.92,r.r*.57,0,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(210,255,55,${r.life*.34})`;ctx.lineWidth=9;ctx.stroke();}
+    });
+    ctx.restore();
+    for(let i=blobs.length-1;i>=0;i--)if(blobs[i].life<=0)blobs.splice(i,1);
+    for(let i=rings.length-1;i>=0;i--)if(rings[i].life<=0)rings.splice(i,1);
+    energy*=.96;vx*=.88;vy*=.88;
+    requestAnimationFrame(render);
+  }
+  if(!reduce)requestAnimationFrame(render);
+  else { // Reduced-motion users still get a static atmospheric field.
+    ambient.forEach(a=>{const x=a.x*w,y=a.y*h;glow(x,y,a.r,a.r*.7,.18);});
+  }
+})();</script>
+
+
+<script>
+/* ============================================================
+   GRANULAR SPECTRUM — EDITABLE SITE CONFIGURATION
+   Change image URLs, destinations, labels and subpage URLs here.
+   Use full image URLs (https://...) for logo and release artwork.
+   ============================================================ */
+/* ==========================================================
+   GRANULAR SPECTRUM — EDITABLE CONTENT
+   Aquí puedes cambiar el logo, YouTube y los lanzamientos.
+
+   LANZAMIENTOS:
+   - image = URL directa de la portada (JPG, PNG o WEBP).
+   - url   = enlace de escucha/compra del lanzamiento (Bandcamp, etc.).
+   - title = nombre del release.
+   - artist= artista.
+   - code  = referencia del sello.
+   ========================================================== */
+window.GS_SITE = {
+  logo: "https://res.cloudinary.com/rgriiass/image/upload/v1793747620/Sin-t%C3%ADtulo-1-_Recuperado.png",
+  homeUrl: "index.html",
+  navigation: [
+    { label: "Home", url: "index.html" },
+    { label: "Releases", url: "releases.html" },
+    { label: "Artists", url: "artists.html" },
+    { label: "About", url: "about.html" },
+    { label: "Archive", url: "archive.html" },
+    { label: "Contact", url: "contact.html" },
+    { label: "Bandcamp ↗", url: "https://granularspectrum.bandcamp.com/", external: true }
+  ],
+  youtube: {
+    url: "https://youtu.be/9Bnqsj4EjUU?si=NK2gIigenMrcr4vz",
+    title: "Visual\\n signal",
+    caption: "Experimental Audiovisual Concert by Darkduction."
+  },
+  releases: [
+    { code:"GS—001", title:"ATRUM", artist:"Darkduction", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793747750/a4001183809_10.jpg", url:"https://darkductiongs.bandcamp.com/album/atrum", format:"AUDIO OBJECT" },
+    { code:"GS—002", title:"Metastable", artist:"Darkduction", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748254/a1384211207_10.jpg", url:"https://darkductiongs.bandcamp.com/album/metastable", format:"AUDIO OBJECT" },
+    { code:"GS—003", title:"ILLUD TEMPUS", artist:"Shakti", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748337/a1730389512_10.jpg", url:"https://shakti666.bandcamp.com/album/illud-tempus-2", format:"AUDIO OBJECT" },
+    { code:"GS—004", title:"Technical Engine", artist:"P.A.ǝ.Z", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748481/a3270603284_10.jpg", url:"https://granularspectrum.bandcamp.com/album/technical-engine", format:"AUDIO OBJECT" },
+	{ code:"GS—001", title:"Vacuus", artist:"Structur", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748565/a3327539490_10.jpg", url:"https://granularspectrum.bandcamp.com/album/vacuus", format:"AUDIO OBJECT" },
+    { code:"GS—002", title:"Hélix", artist:"Meta[noia]", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748603/a3535967848_10.jpg", url:"https://shakti666.bandcamp.com/album/h-lix", format:"AUDIO OBJECT" },
+    { code:"GS—003", title:"Abiogenesis", artist:"Various Artists", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748688/a1212101063_10.jpg", url:"https://granularspectrum.bandcamp.com/album/abiogenesis", format:"AUDIO OBJECT" },
+    { code:"GS—004", title:"RAICES", artist:"Various Artists", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793748762/a2696978913_10.jpg", url:"https://granularspectrum.bandcamp.com/album/raices", format:"AUDIO OBJECT" }  
+  ]
+};
+
+(()=>{
+ const cfg=window.GS_SITE;
+ const yt=cfg.youtube||{};
+ const ytFrame=document.getElementById('youtubeFrame');
+ const ytTitle=document.getElementById('youtubeTitle');
+ const ytCaption=document.getElementById('youtubeCaption');
+ if(ytTitle && yt.title) ytTitle.innerHTML=String(yt.title).replace(/\\n/g,'<br>');
+ if(ytCaption && yt.caption) ytCaption.textContent=yt.caption;
+ function youtubeId(url){
+   try{
+     const u=new URL(url);
+     if(u.hostname.includes('youtu.be')) return u.pathname.slice(1).split('/')[0];
+     if(u.searchParams.get('v')) return u.searchParams.get('v');
+     const parts=u.pathname.split('/').filter(Boolean);
+     const key=parts.findIndex(p=>['embed','shorts','live'].includes(p));
+     return key>=0 ? parts[key+1] : '';
+   }catch(e){return '';}
+ }
+ const videoId=youtubeId(yt.url||'');
+ if(ytFrame && videoId){
+   const iframe=document.createElement('iframe');
+   iframe.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(videoId);
+   iframe.title='Granular Spectrum — YouTube transmission';
+   iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+   iframe.referrerPolicy='strict-origin-when-cross-origin';
+   iframe.allowFullscreen=true;
+   ytFrame.replaceChildren(iframe);
+ }
+
+ const logo=document.getElementById('siteLogo');
+ const logoFallback=document.getElementById('siteLogoFallback');
+ const logoLink=document.getElementById('siteLogoLink');
+ if(cfg.logo && !cfg.logo.includes('YOUR-IMAGE-HOST')){
+   logo.src=cfg.logo; logo.style.display='block'; logoFallback.style.display='none';
+ }
+ logoLink.href=cfg.homeUrl || 'index.html';
+
+ const nav=document.getElementById('nav');
+ nav.innerHTML=(cfg.navigation||[]).map(item=>{
+   const ext=item.external?' target="_blank" rel="noopener"':'';
+   return `<a href="${item.url}"${ext}>${item.label}</a>`;
+ }).join('');
+
+ const grid=document.getElementById('releaseGrid');
+ grid.innerHTML=(cfg.releases||[]).map((r,i)=>{
+   const imageUrl=String(r.image||'').trim();
+   const hasRealImage=!!imageUrl && !imageUrl.includes('YOUR-IMAGE-HOST');
+   return `
+   <a class="release reveal visible" href="${r.url||'#'}" target="_blank" rel="noopener">
+    <div class="cover${hasRealImage?'':' artwork-missing'}">
+      ${hasRealImage ? `<img class="release-artwork" src="${imageUrl}" alt="${r.title||'Release'} artwork"
+       loading="${i<2?'eager':'lazy'}" decoding="async"
+       onload="this.parentElement.classList.remove('artwork-missing')"
+       onerror="this.style.display='none';this.parentElement.classList.add('artwork-missing')">` : ''}
+      <span class="cover-code">${r.code||''} / ${r.format||''}</span>
+      <span class="cover-title">${r.title||'UNTITLED'}</span><span class="cover-no">${String(i+1).padStart(2,'0')}</span>
+    </div>
+    <div class="release-info"><span>${r.title||'UNTITLED'} / ${r.artist||''}</span><small>Explore release ↗</small></div>
+   </a>`;
+ }).join('');
+})();
+</script>
+
+</body></html>
