@@ -1,211 +1,526 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#050605">
-<title>DARKDUCTION — Granular Spectrum</title>
+<meta name="theme-color" content="#080808">
+<title>DARKDUCTION — GRANULAR SPECTRUM®</title>
 <meta name="description" content="Darkduction — Colombian electronic music project. Artist, producer and audiovisual practice.">
-<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-<link rel="preconnect" href="https://f4.bcbits.com" crossorigin>
-<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://f4.bcbits.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050605;--fg:#e8e9e2;--muted:#777b70;--line:#252820;--acid:#d4ff38;--display:"Barlow Condensed",Impact,sans-serif;--mono:"Space Mono",monospace}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--bg)}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-::selection{background:var(--acid);color:#050605}
-#liquid-field{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.9;mix-blend-mode:screen}
-.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
-.site{position:relative;z-index:2}
-header{height:82px;position:fixed;z-index:10;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid #ffffff12;background:linear-gradient(#050605dd,#05060555);backdrop-filter:blur(12px)}
-.logo{font:700 17px var(--display);letter-spacing:.09em}.logo i{color:var(--acid);font-style:normal}
-nav{display:flex;gap:clamp(16px,3vw,42px);align-items:center}
-nav a{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#a5a99d;transition:color .2s}
-nav a:hover{color:var(--acid)}
-.menu{display:none;border:1px solid var(--line);background:none;color:var(--fg);padding:9px 12px;font-size:9px}
-main{width:min(1440px,90vw);margin:auto}
-.hero{min-height:100svh;padding:150px 0 75px;display:flex;flex-direction:column;justify-content:center;position:relative}
-.topline,.bottomline{display:flex;justify-content:space-between;gap:20px;color:#777b70;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
-.kicker{color:var(--acid);font-size:10px;letter-spacing:.2em;margin:9vh 0 20px}
-h1{font:900 clamp(82px,17vw,250px)/.72 var(--display);letter-spacing:-.045em;margin:0;text-transform:uppercase}
-h1 span{display:block}
-h1 .outline{color:transparent;-webkit-text-stroke:1px #dfe2d5}
-.hero-meta{display:flex;justify-content:space-between;align-items:end;margin-top:55px;gap:35px}
-.hero-meta p{max-width:420px;color:#a1a497;font-size:11px;line-height:1.9;margin:0}
-.hero-meta strong{display:block;color:var(--acid);font:700 11px var(--mono);letter-spacing:.12em;margin-bottom:10px}
-.scroll-mark{position:absolute;right:0;bottom:40px;color:#777b70;font-size:9px;writing-mode:vertical-rl;letter-spacing:.2em}
-.section{padding:125px 0;border-top:1px solid var(--line)}
-.section-head{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:end;margin-bottom:45px}
-.index{font-size:9px;color:var(--acid);letter-spacing:.18em;margin-bottom:17px}
-h2{font:800 clamp(48px,8vw,112px)/.82 var(--display);letter-spacing:-.025em;text-transform:uppercase;margin:0}
-.section-head p{justify-self:end;max-width:380px;color:#8d9185;font-size:10px;line-height:1.9;margin:0}
-.bio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:8vw;align-items:start}
-.bio-large{font:500 clamp(26px,3.5vw,48px)/1.12 var(--display);text-transform:uppercase;max-width:740px;margin:0}
-.bio-copy{font-size:10px;line-height:2;color:#999d91}
-.bio-copy p{margin:0 0 18px}
-.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#10130c;border:1px solid #ffffff14}
-.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s;filter:grayscale(.12) contrast(1.04)}
-.photo:hover img{transform:scale(1.035);filter:grayscale(0) contrast(1.08)}
-.photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#050605a8);pointer-events:none}
-.photo-label{position:absolute;z-index:1;bottom:17px;left:18px;font-size:9px;letter-spacing:.15em;color:#e9ebdf}
-.photo-label span{color:var(--acid);margin-right:12px}
-.release-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 18px}
-.release{min-width:0;display:block}
-.cover{aspect-ratio:1/1;position:relative;overflow:hidden;background:#0b0e08;border:1px solid #ffffff18}
-.cover img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;filter:saturate(.82)}
-.release:hover .cover img{transform:scale(1.045);filter:saturate(1.08)}
-.cover-pending{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 65% 30%,#52621c 0,#1b2410 22%,#0b0e08 65%)}
-.cover-pending:before,.cover-pending:after{content:"";position:absolute;border:1px solid #d4ff3850;border-radius:50%;width:78%;aspect-ratio:1;left:10%;top:12%;transform:rotate(-23deg) scaleY(.38);box-shadow:0 0 70px #d4ff3820,inset 0 0 55px #d4ff3818}
-.cover-pending:after{transform:rotate(47deg) scaleY(.24);width:100%;left:0;top:30%;border-color:#e7ff9a36}
-.release-info{display:flex;justify-content:space-between;align-items:start;gap:14px;padding-top:13px;border-top:1px solid var(--line);margin-top:10px}
-.release-info small{display:block;color:var(--acid);font-size:8px;letter-spacing:.12em;margin-bottom:7px}
-.release-info strong{font:700 24px/.95 var(--display);text-transform:uppercase;display:block}
-.release-info em{font-style:normal;color:#85897d;font-size:8px;white-space:nowrap}
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.video{display:block;border:1px solid var(--line);background:#0b0d09}
-.video-thumb{aspect-ratio:16/9;position:relative;background:#12170b;overflow:hidden}
-.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.35) contrast(1.1);transition:transform .5s,filter .5s}
-.video:hover img{transform:scale(1.04);filter:grayscale(0)}
-.play{position:absolute;inset:0;display:grid;place-items:center;background:#0003}
-.play:before{content:"";width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:15px solid var(--acid);filter:drop-shadow(0 0 10px #d4ff38)}
-.video-meta{display:flex;justify-content:space-between;padding:13px 14px;font-size:9px;letter-spacing:.1em}
-.video-meta span:last-child{color:var(--acid)}
-.socials{display:flex;flex-wrap:wrap;gap:12px}
-.social{min-width:220px;flex:1;border:1px solid var(--line);padding:23px;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s,background .2s}
-.social:hover{border-color:var(--acid);background:#d4ff3808}
-.social strong{font:700 28px var(--display);text-transform:uppercase}
-.social small{display:block;color:#777b70;font-size:8px;letter-spacing:.1em;margin-top:5px}
-.social b{color:var(--acid);font-size:17px;font-weight:400}
-.end{padding:100px 0 45px;border-top:1px solid var(--line)}
-.end h2{font-size:clamp(65px,13vw,180px);line-height:.75}
-.end h2 span{color:var(--acid)}
-footer{border-top:1px solid var(--line);padding:22px 0 35px;display:flex;justify-content:space-between;gap:20px;color:#686d61;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
-footer a:hover{color:var(--acid)}
-.progress{position:fixed;z-index:12;left:0;top:0;height:2px;width:100%;background:var(--acid);transform:scaleX(0);transform-origin:left}
+
+:root{--bg:#080808;--fg:#e9e9e4;--muted:#777873;--line:#30312e;--acid:#d4ff38;--mono:'Space Mono',monospace;--display:'Barlow Condensed',Impact,sans-serif;--mx:50vw;--my:50vh}
+*{box-sizing:border-box}html{scroll-behavior:auto;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden;cursor:default}::selection{background:var(--acid);color:#080808}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}25%{transform:translate(2%,-1%)}50%{transform:translate(-1%,2%)}75%{transform:translate(1%,1%)}100%{transform:translate(-2%,-1%)}}
+.wrap{position:relative;z-index:2}.topbar{position:fixed;z-index:30;top:0;left:0;width:100%;padding:22px 3.2vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff20;background:#080808ed}.brand{font-size:12px;letter-spacing:.13em;font-weight:bold}.brand span{color:var(--acid)}.nav{display:flex;gap:30px;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.nav a{color:#aaa;transition:color .2s}.nav a:hover{color:var(--acid)}.menu{display:none;background:none;border:0;font-size:10px;letter-spacing:.1em}.hero{min-height:100svh;padding:145px 3.2vw 45px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}.hero-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:9px;letter-spacing:.13em;text-transform:uppercase}.hero-center{position:relative;margin:8vh 0 5vh}.eyebrow{font-size:10px;letter-spacing:.2em;color:var(--acid);margin-bottom:15px}.hero h1{font:900 clamp(86px,18.3vw,290px)/.72 var(--display);letter-spacing:-.065em;margin:0;text-transform:uppercase;position:relative;z-index:2}.hero h1 .line{display:block;white-space:nowrap}.hero h1 .outline{color:transparent;-webkit-text-stroke:1px #d9d9d2}.hero h1 .offset{padding-left:12vw}.hero-copy{max-width:310px;margin:35px 0 0 auto;font-size:10px;line-height:1.9;color:#aaa}.hero-bottom{display:flex;justify-content:space-between;align-items:end;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}.scroll-cue{display:flex;align-items:center;gap:12px}.scroll-cue i{width:45px;height:1px;background:var(--acid);display:block}.crosshair{position:absolute;width:38vw;aspect-ratio:1;border:1px solid #ffffff18;border-radius:50%;right:8%;top:16%;pointer-events:none;animation:rotate 28s linear infinite}.crosshair:before,.crosshair:after{content:"";position:absolute;inset:13%;border:1px solid #ffffff15;border-radius:50%}.crosshair:after{inset:29%;border-style:dashed}@keyframes rotate{to{transform:rotate(360deg)}}
+.section{padding:130px 3.2vw;position:relative;border-top:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:70px}.index{font-size:10px;color:var(--acid);letter-spacing:.15em}.section h2{font:800 clamp(55px,10vw,145px)/.82 var(--display);letter-spacing:-.04em;margin:0;text-transform:uppercase}.section-note{max-width:230px;color:var(--muted);font-size:9px;line-height:1.8;text-align:right}.manifesto{min-height:75vh;display:flex;align-items:center}.manifesto-text{font:700 clamp(38px,7vw,100px)/.98 var(--display);text-transform:uppercase;max-width:1100px;letter-spacing:-.025em}.manifesto-text span{color:transparent;-webkit-text-stroke:1px #aaa}.manifesto-text .acid{color:var(--acid);-webkit-text-stroke:0}.releases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:55px 22px}.release{display:block;cursor:pointer}.cover{aspect-ratio:1/1;background:#151615;position:relative;overflow:hidden;border:1px solid #ffffff1a}.cover canvas{width:100%;height:100%;display:block}.cover .cover-code{position:absolute;top:18px;left:18px;font-size:9px;color:#bbb;letter-spacing:.15em}.cover .cover-title{position:absolute;bottom:18px;left:18px;font:800 clamp(35px,6vw,85px)/.8 var(--display);letter-spacing:-.04em;max-width:85%;}.cover .cover-no{position:absolute;right:18px;bottom:18px;font-size:10px;color:var(--acid)}.release-info{display:flex;justify-content:space-between;gap:15px;padding-top:15px;font-size:10px;text-transform:uppercase;letter-spacing:.08em}.release-info small{color:var(--muted);font-size:9px}.release:hover .cover{border-color:var(--acid)}.release:hover .cover-title{color:var(--acid);transform:translateX(8px)}.cover-title{transition:transform .35s,color .35s}.release-hint{font-size:9px;color:var(--muted);margin-top:8px}.artists-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 7vw}.artist{padding:23px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font:700 clamp(30px,5vw,65px)/1 var(--display);text-transform:uppercase;transition:padding .25s,color .25s}.artist:hover{padding-left:18px;color:var(--acid)}.artist small{font:9px var(--mono);color:var(--muted)}.statement{padding:120px 3.2vw 150px;background:var(--acid);color:#080808}.statement .label{font-size:9px;letter-spacing:.18em}.statement h2{font:900 clamp(65px,14vw,190px)/.78 var(--display);letter-spacing:-.055em;text-transform:uppercase;margin:55px 0 35px}.statement p{font-size:10px;line-height:1.9;max-width:440px;margin-left:auto}.footer{padding:35px 3.2vw 25px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}.footer strong{color:var(--fg);font-weight:400}.footer .right{text-align:right}.backtop{color:var(--acid)}.reveal{opacity:0;transform:translateY(35px);transition:opacity .9s,transform .9s}.reveal.visible{opacity:1;transform:translateY(0)}.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;white-space:nowrap;color:#777;font:700 25px var(--display);letter-spacing:.08em}.ticker span{display:inline-block;animation:ticker 30s linear infinite}@keyframes ticker{to{transform:translateX(-50%)}}
+@media(max-width:700px){.topbar{padding:18px 5vw}.nav{display:none;position:absolute;top:58px;left:0;width:100%;padding:25px 5vw;background:#080808f2;flex-direction:column;gap:22px;border-bottom:1px solid var(--line)}.nav.open{display:flex}.menu{display:block}.hero{padding:125px 5vw 30px;min-height:90svh}.hero-meta{font-size:8px}.hero h1{font-size:21vw}.hero h1 .offset{padding-left:5vw}.crosshair{width:70vw;right:-8%;top:25%}.hero-copy{margin-top:30px}.section{padding:90px 5vw}.section-head{margin-bottom:45px;gap:20px}.section-note{max-width:130px;font-size:8px}.releases{gap:35px 12px}.release-info{font-size:8px;flex-direction:column;gap:5px}.cover .cover-title{font-size:12vw}.artists-grid{grid-template-columns:1fr}.artist{font-size:45px}.manifesto{min-height:65vh}.statement{padding:90px 5vw}.statement p{margin-left:0}.footer{padding:28px 5vw;grid-template-columns:1fr 1fr}.footer .right{grid-column:1/-1;text-align:left}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* GRANULAR SPECTRUM / EXPERIMENTAL INTERACTION LAYER */
+:root{--scroll:0;--glow-x:50%;--glow-y:50%}
+
+.wrap{z-index:2}.topbar{transition:background .4s,border-color .4s}.topbar.scrolled{background:#080808d9;border-color:#d4ff3840}
+.signal-progress{position:fixed;z-index:60;top:0;left:0;height:2px;width:100%;transform-origin:left;transform:scaleX(var(--scroll));background:var(--acid);pointer-events:none}
+.hero h1{will-change:transform,filter}.hero h1 .line{transition:letter-spacing .6s}.hero:hover h1 .line:first-child{letter-spacing:-.085em}.hero-center:after{content:"";position:absolute;inset:-10% -5%;pointer-events:none;background:radial-gradient(500px circle at var(--glow-x) var(--glow-y),#d4ff380b,transparent 65%)}
+.release{position:relative;transform-style:preserve-3d;will-change:transform}.release .cover{transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}.release:hover .cover{filter:contrast(1.2)}.release:after{content:"OPEN TRANSMISSION ↗";position:absolute;right:14px;top:14px;font-size:8px;letter-spacing:.12em;color:var(--acid);opacity:0;transform:translateY(5px);transition:.25s;pointer-events:none}.release:hover:after{opacity:1;transform:none}
+.cover canvas{transition:filter .5s,transform 1s}.release:hover .cover canvas{filter:contrast(1.4) brightness(1.2);transform:scale(1.04)}
+.manifesto-text span,.manifesto-text{will-change:transform}.artist{position:relative;overflow:hidden}.artist:after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .45s}.artist:hover:after{transform:scaleX(1)}
+.release-modal{position:fixed;inset:0;z-index:80;background:#080808f5;;display:grid;place-items:center;padding:6vw;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}.release-modal.open{opacity:1;visibility:visible}.modal-close{position:absolute;right:3vw;top:28px;background:none;border:0;color:var(--acid);font-size:10px;letter-spacing:.15em;cursor:pointer}.modal-inner{width:min(1100px,100%);max-height:90vh;overflow:auto}.modal-index{font-size:9px;color:var(--acid);letter-spacing:.2em;margin-bottom:25px}.modal-grid{display:grid;grid-template-columns:minmax(250px,.9fr) 1.1fr;gap:6vw;align-items:center}.modal-art{aspect-ratio:1;background:radial-gradient(ellipse at 50% 50%,#464a40 0,#171a17 35%,#080808 72%);border:1px solid #ffffff30;position:relative;overflow:hidden;display:grid;place-items:center}.modal-art:before,.modal-art:after{content:"";position:absolute;width:130%;height:1px;background:#d4ff3880;transform:rotate(-32deg);box-shadow:0 0 40px #d4ff38}.modal-art:after{transform:rotate(57deg);opacity:.5}.modal-art span{font:900 clamp(55px,9vw,120px)/.75 var(--display);letter-spacing:-.07em;text-align:center;z-index:2;color:#eee;mix-blend-mode:difference}.modal-art-noise{position:absolute;inset:-50%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='x'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23x)' opacity='.5'/%3E%3C/svg%3E");opacity:.35;animation:grain .2s steps(2) infinite}.modal-copy h2{font:900 clamp(65px,10vw,135px)/.76 var(--display);letter-spacing:-.06em;margin:25px 0}.modal-copy p{font-size:10px;color:#aaa;line-height:2;max-width:390px}.waveform{height:65px;display:flex;align-items:center;gap:3px;margin:35px 0 25px;overflow:hidden}.waveform i{display:block;flex:1;min-width:2px;background:var(--acid);opacity:.65;height:var(--bar);transform-origin:center;animation:wave var(--speed) ease-in-out infinite alternate;animation-delay:var(--delay)}@keyframes wave{to{transform:scaleY(.18);opacity:.25}}.modal-meta{display:flex;gap:30px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:8px;color:var(--muted);letter-spacing:.12em}.modal-meta b{display:block;color:#eee;font-weight:400;margin-top:7px}.modal-link{display:inline-block;margin-top:28px;padding:16px 20px;border:1px solid var(--acid);color:var(--acid);font-size:9px;letter-spacing:.12em;transition:background .25s,color .25s}.modal-link:hover{background:var(--acid);color:#080808}
+@media(max-width:700px){.modal-grid{grid-template-columns:1fr;gap:30px}.modal-art{max-height:42vh}.release-modal{padding:70px 5vw 30px}.modal-copy h2{font-size:19vw}.modal-meta{gap:15px}}
+
+
+
+/* LIQUID PASS: visible fluid wake and displacement of the actual page */
+
+
+
+body.liquid-on 
+
+
+
+
+/* Configurable logo and release image presentation */
+.brand-image{display:flex;align-items:center;min-width:150px;min-height:28px}
+.brand-image img{display:block;max-width:210px;max-height:42px;width:auto;height:auto;object-fit:contain}
+.brand-image i{font-style:normal;color:var(--acid);padding:0 3px}
+.cover{background:#111}
+.cover .release-artwork{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s;z-index:0}
+.release:hover .release-artwork{transform:scale(1.055);filter:contrast(1.12) brightness(.82)}
+.cover-code,.cover-title,.cover-no{z-index:1}
+.cover-title{pointer-events:none;text-shadow:0 2px 20px #0009}
+.cover.artwork-missing:before{content:"ARTWORK / IMAGE URL";position:absolute;inset:0;display:grid;place-items:center;color:#777;font-size:9px;letter-spacing:.2em}
+.nav{align-items:center}
+.nav a{white-space:nowrap}
+
+
+
+
+.wrap{z-index:2}
+.topbar{z-index:30}
 @media(max-width:760px){
- header{height:68px;padding:0 5vw}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;padding:22px 5vw 28px;background:#080a07f5;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}nav.open{display:flex}
- main{width:90vw}.hero{padding-top:125px;min-height:90svh}.topline,.bottomline{font-size:7px}.hero-meta{display:block;margin-top:35px}.hero-meta p{margin-top:25px}.scroll-mark{display:none}
- .section{padding:82px 0}.section-head,.bio-grid{grid-template-columns:1fr}.section-head p{justify-self:start}.photo-grid{gap:9px}.release-grid{grid-template-columns:repeat(2,1fr);gap:25px 10px}.release-info strong{font-size:20px}.release-info em{font-size:7px}
- .video-grid{grid-template-columns:1fr}.video-meta{font-size:8px}.social{min-width:100%}footer{flex-direction:column}
+ .brand-image img{max-width:155px;max-height:34px}
+ .nav{position:absolute;top:100%;left:0;right:0;padding:22px 5vw;background:#080808f2;display:none;flex-direction:column;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line)}
+ .nav.open{display:flex}
+ .menu{display:block}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+
+/* GRANULAR SPECTRUM — DEEP BLACK ART DIRECTION */
+:root{
+  --bg:#020202;
+  --fg:#e9e9e4;
+  --muted:#696a65;
+  --line:#1b1c19;
+}
+html,body{background:#020202!important}
+body{background-color:#020202!important}
+.modal-art{
+  background:radial-gradient(ellipse at 50% 48%,#11150b 0%,#080907 27%,#030303 64%,#020202 100%);
+}
+.release-card,.artist-card,.panel,.menu-panel{background-color:#050605}
+header,.site-header{background-color:rgba(2,2,2,.94)}
+/* Preserve the acid-green identity while reducing ambient grey/green haze. */
+
+
+/* DEEP BLACK — stronger visual correction */
+:root{--bg:#000000;--fg:#f0f0eb;--muted:#555650;--line:#171815}
+html,body{background:#000!important}
+body{background:#000!important}
+.topbar{background:rgba(0,0,0,.94)!important;border-bottom-color:#171815!important;}
+.topbar.scrolled{background:rgba(0,0,0,.98)!important}
+.hero,.section,.footer{background:#000!important}
+.section{border-top-color:#141512!important}
+.cover{background:#030303!important;border-color:#191a17!important}
+.release:hover .cover{border-color:var(--acid)!important}
+.statement{
+  background:#030403!important;
+  color:#e9e9e4!important;
+  border-top:1px solid #20221a;
+  border-bottom:1px solid #20221a;
+  position:relative;
+}
+.statement:before{
+  content:"";
+  position:absolute;
+  left:3.2vw;top:0;
+  width:68px;height:2px;
+  background:var(--acid);
+  box-shadow:0 0 18px #d4ff3880;
+}
+.statement .label{color:var(--acid)!important}
+.statement h2{color:#e9e9e4!important}
+.statement p{color:#85867f!important}
+.modal-art{
+  background:radial-gradient(ellipse at 50% 50%,#090b06 0%,#030403 24%,#010101 65%,#000 100%)!important;
+  border-color:#20221a!important;
+}
+.release-modal{background:rgba(0,0,0,.985)!important}
+.nav.open{background:rgba(0,0,0,.99)!important}
+.crosshair{border-color:#ffffff0b}
+.crosshair:before,.crosshair:after{border-color:#ffffff0a}
+.hero h1 .outline{color:#f2f2ed!important;-webkit-text-stroke:0!important;text-shadow:0 0 24px #ffffff12!important}
+.hero-copy,.modal-copy p{color:#888!important}
+.ticker{color:#555!important;border-color:#171815!important}
+.footer{border-top-color:#171815!important;color:#555!important}
+.artist{border-top-color:#171815!important}
+::selection{background:var(--acid);color:#000}
+
+
+/* LIQUID BACKGROUND — visible only behind page content */
+
+#field,
+.wrap{position:relative;z-index:2!important}
+.topbar{position:fixed!important;z-index:30!important}
+
+
+
+
+.hero h1 .outline{color:#f2f2ed!important;-webkit-text-stroke:0!important;text-shadow:0 0 24px #ffffff12!important}
+
+.wrap{position:relative!important;z-index:2!important}
+.topbar{position:fixed!important;z-index:30!important}
+
+
+.video-transmission{padding-top:105px;padding-bottom:110px}
+.video-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:42px}
+.video-head h2{font:800 clamp(55px,10vw,145px)/.82 var(--display);letter-spacing:-.04em;margin:18px 0 0;text-transform:uppercase}
+.youtube-frame{position:relative;width:100%;aspect-ratio:16/9;background:#050605;border:1px solid #ffffff24;overflow:hidden}
+.youtube-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.youtube-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:radial-gradient(ellipse at center,#15190c 0%,#050605 55%,#020202 100%);color:var(--acid);font-size:10px;letter-spacing:.18em}
+.youtube-placeholder small{font-size:8px;color:#777;letter-spacing:.12em}
+.video-foot{display:flex;justify-content:space-between;padding-top:13px;font-size:8px;color:var(--muted);letter-spacing:.16em}
+@media(max-width:700px){.video-transmission{padding-top:75px;padding-bottom:80px}.video-head{align-items:flex-start;flex-direction:column;margin-bottom:30px}.video-head .section-note{text-align:left;max-width:260px}.youtube-frame{aspect-ratio:16/9}.video-foot{font-size:7px}}
+
+
+/* RELEASE INDEX — a dedicated discography experience using the Home visual language */
+.archive-hero{min-height:82svh;padding:135px 3.2vw 32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.archive-topline,.archive-bottomline{display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.archive-title-wrap{position:relative;margin:8vh 0 5vh}
+.archive-index{font-size:10px;letter-spacing:.2em;color:var(--acid);margin-bottom:22px}
+.archive-title{font:900 clamp(90px,19vw,300px)/.72 var(--display);letter-spacing:-.065em;margin:0;text-transform:uppercase;position:relative;z-index:2}
+.archive-title span{display:block;white-space:nowrap}
+.archive-title .outline{color:transparent;-webkit-text-stroke:1.5px #e9e9e4}
+.acid-dot{color:var(--acid)!important;-webkit-text-stroke:0!important}
+.archive-intro{display:flex;justify-content:space-between;align-items:end;gap:25px;margin:42px 0 0 auto;max-width:650px}
+.archive-intro p{font-size:10px;line-height:1.9;color:#999;max-width:300px;margin:0}
+.archive-scroll{display:flex;align-items:center;gap:12px;font-size:9px;letter-spacing:.13em;color:var(--acid);white-space:nowrap}
+.archive-scroll i{display:block;width:40px;height:1px;background:var(--acid)}
+.archive-catalogue{padding-top:115px}
+.catalogue-heading{display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:65px}
+.catalogue-heading h2{font:800 clamp(65px,11vw,155px)/.78 var(--display);letter-spacing:-.045em;text-transform:uppercase;margin:15px 0 0}
+.catalogue-description{max-width:260px}
+.catalogue-description p{font-size:9px;line-height:1.9;color:var(--muted);margin:0}
+.catalogue-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:30px}
+.catalogue-status{display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:.14em;color:var(--acid)}
+.status-light{width:6px;height:6px;background:var(--acid);border-radius:50%;box-shadow:0 0 12px var(--acid)}
+.catalogue-tools{display:flex;gap:18px}
+.search-wrap,.filter-wrap{display:flex;align-items:center;gap:10px;font-size:8px;letter-spacing:.12em;color:#666}
+.search-wrap input,.filter-wrap select{background:#050505;border:0;border-bottom:1px solid #343630;border-radius:0;color:#e9e9e4;padding:10px 5px;font:9px var(--mono);letter-spacing:.08em;outline:none;min-width:190px}
+.filter-wrap select{min-width:110px}
+.search-wrap input:focus,.filter-wrap select:focus{border-bottom-color:var(--acid)}
+.search-wrap input::placeholder{color:#555}
+.release-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:58px 22px}
+.release-card{display:block;min-width:0;position:relative;color:inherit;text-decoration:none}
+.release-card[hidden]{display:none!important}
+.release-card .art{aspect-ratio:1/1;position:relative;overflow:hidden;background:#080908;border:1px solid #242620;isolation:isolate}
+.release-card .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s}
+.release-card:hover .art img{transform:scale(1.045);filter:contrast(1.12) brightness(.82)}
+.release-card .art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,#0009);pointer-events:none}
+.release-card .art-code{position:absolute;z-index:2;top:17px;left:17px;font-size:8px;letter-spacing:.14em;color:#e5e5df;text-shadow:0 1px 8px #000}
+.release-card .art-no{position:absolute;z-index:2;right:17px;bottom:16px;font-size:9px;color:var(--acid);letter-spacing:.12em}
+.release-card .art-missing{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at center,#171a12,#030303 70%);color:#666;font-size:9px;letter-spacing:.18em}
+.release-card .record-data{display:grid;grid-template-columns:1fr auto;gap:8px 15px;padding-top:14px;border-bottom:1px solid var(--line);padding-bottom:13px}
+.release-card .record-title{font:800 clamp(27px,4vw,52px)/.9 var(--display);letter-spacing:-.025em;text-transform:uppercase}
+.release-card .record-code{font-size:8px;letter-spacing:.12em;color:var(--acid);text-align:right;padding-top:4px}
+.release-card .record-artist{font-size:9px;color:#aaa;letter-spacing:.08em;text-transform:uppercase}
+.release-card .record-format{font-size:8px;color:#666;letter-spacing:.1em;text-align:right;text-transform:uppercase}
+.release-card .record-open{grid-column:1/-1;display:flex;justify-content:space-between;padding-top:10px;color:#777;font-size:8px;letter-spacing:.13em;text-transform:uppercase}
+.release-card:hover .record-title{color:var(--acid)}
+.catalogue-empty{display:none;padding:70px 0;color:var(--muted);font-size:9px;letter-spacing:.16em}
+.catalogue-pagination{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);margin-top:55px;padding-top:20px;font-size:8px;letter-spacing:.13em;color:#666}
+.catalogue-pagination button{background:transparent;border:1px solid var(--acid);padding:15px 20px;color:var(--acid);font:9px var(--mono);letter-spacing:.12em;cursor:pointer;transition:.25s}
+.catalogue-pagination button:hover{background:var(--acid);color:#000}
+.catalogue-pagination button span{font-size:14px;margin-left:10px}
+.archive-end{padding:75px 3.2vw 85px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}
+.archive-end-label{font-size:9px;letter-spacing:.15em;color:var(--muted)}
+.back-home{font:800 clamp(30px,5vw,65px)/1 var(--display);text-transform:uppercase;letter-spacing:-.03em}
+.back-home span{color:var(--acid)}
+@media(min-width:1100px){.release-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:65px 22px}}
+@media(max-width:700px){
+ .archive-hero{min-height:78svh;padding:120px 5vw 25px}
+ .archive-topline,.archive-bottomline{font-size:7px}
+ .archive-title{font-size:22vw}
+ .archive-title .outline{-webkit-text-stroke:1px #e9e9e4}
+ .archive-intro{margin-top:32px;align-items:start;flex-direction:column}
+ .archive-catalogue{padding-top:85px}
+ .catalogue-heading{align-items:start;flex-direction:column;margin-bottom:40px}
+ .catalogue-heading h2{font-size:18vw}
+ .catalogue-toolbar{align-items:stretch;flex-direction:column}
+ .catalogue-tools{display:grid;grid-template-columns:1fr;gap:12px}
+ .search-wrap,.filter-wrap{justify-content:space-between}
+ .search-wrap input,.filter-wrap select{flex:1;min-width:0}
+ .release-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:35px 12px}
+ .release-card .record-data{grid-template-columns:1fr;gap:7px}
+ .release-card .record-title{font-size:10vw}
+ .release-card .record-code,.release-card .record-format{text-align:left}
+ .catalogue-pagination{flex-wrap:wrap}
+ .catalogue-pagination button{order:3;width:100%}
+ .archive-end{padding:55px 5vw;align-items:start;flex-direction:column}
+}
+
+
+/* DARKDUCTION CONTENT — adapted to the supplied RELEASE INDEX design system */
+main.artist-page{width:100%;margin:0}
+.artist-page .hero{min-height:92svh;padding:140px 3.2vw 38px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.artist-page .hero-title-wrap{position:relative;margin:8vh 0 5vh}
+.artist-page .hero-title{font:900 clamp(100px,20vw,320px)/.72 var(--display);letter-spacing:-.065em;margin:0;text-transform:uppercase;position:relative;z-index:2}
+.artist-page .hero-title span{display:block;white-space:nowrap}
+.artist-page .hero-title .outline{color:transparent;-webkit-text-stroke:1.5px #e9e9e4}
+.artist-page .hero-intro{display:flex;justify-content:space-between;align-items:end;gap:25px;margin:42px 0 0 auto;max-width:760px}
+.artist-page .hero-intro p{font-size:10px;line-height:1.9;color:#999;max-width:360px;margin:0}
+.artist-page .hero-bottom{display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.artist-page .section{padding:120px 3.2vw;position:relative;border-top:1px solid var(--line)}
+.artist-page .section-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:55px;gap:30px}
+.artist-page .section-head h2{font:800 clamp(55px,10vw,145px)/.82 var(--display);letter-spacing:-.04em;margin:0;text-transform:uppercase}
+.artist-page .section-head p{max-width:260px;color:var(--muted);font-size:9px;line-height:1.9;text-align:right;margin:0}
+.artist-page .bio-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:8vw;align-items:start}
+.artist-page .bio-large{font:700 clamp(38px,6.5vw,92px)/.96 var(--display);text-transform:uppercase;max-width:850px;margin:0;letter-spacing:-.025em}
+.artist-page .bio-copy{font-size:10px;line-height:2;color:#999;margin:0}
+.artist-page .bio-copy p{margin:0 0 18px}
+.artist-page .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.artist-page .photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#111;border:1px solid #ffffff18;display:block}
+.artist-page .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s,filter .6s;filter:grayscale(.12) contrast(1.04)}
+.artist-page .photo:hover img{transform:scale(1.035);filter:grayscale(0) contrast(1.08)}
+.artist-page .photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#000a);pointer-events:none}
+.artist-page .photo-label{position:absolute;z-index:2;bottom:17px;left:18px;font-size:9px;letter-spacing:.15em;color:#e9ebdf}
+.artist-page .photo-label span{color:var(--acid);margin-right:12px}
+.artist-page .release-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:58px 22px}
+.artist-page .release-card{display:block;min-width:0;position:relative;color:inherit}
+.artist-page .release-card .art{aspect-ratio:1/1;position:relative;overflow:hidden;background:#080908;border:1px solid #242620}
+.artist-page .release-card .art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s,filter .8s}
+.artist-page .release-card:hover .art img{transform:scale(1.045);filter:contrast(1.12) brightness(.82)}
+.artist-page .release-card .art-pending{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 30%,#343a20,#080908 70%);display:grid;place-items:center;color:#777;font-size:9px;letter-spacing:.18em}
+.artist-page .record-data{display:grid;grid-template-columns:1fr auto;gap:8px 15px;padding:14px 0 13px;border-bottom:1px solid var(--line)}
+.artist-page .record-title{font:800 clamp(27px,4vw,52px)/.9 var(--display);letter-spacing:-.025em;text-transform:uppercase}
+.artist-page .record-year{font-size:8px;letter-spacing:.12em;color:var(--acid);text-align:right;padding-top:4px}
+.artist-page .record-open{grid-column:1/-1;display:flex;justify-content:space-between;padding-top:10px;color:#777;font-size:8px;letter-spacing:.13em;text-transform:uppercase}
+.artist-page .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.artist-page .video-card{display:block;border:1px solid var(--line);background:#050505}
+.artist-page .video-thumb{aspect-ratio:16/9;position:relative;background:#10110d;overflow:hidden}
+.artist-page .video-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.25) contrast(1.1);transition:transform .5s,filter .5s}
+.artist-page .video-card:hover img{transform:scale(1.04);filter:grayscale(0)}
+.artist-page .play{position:absolute;inset:0;display:grid;place-items:center;background:#0003}
+.artist-page .play:before{content:"";width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:15px solid var(--acid);filter:drop-shadow(0 0 10px #d4ff38)}
+.artist-page .video-meta{display:flex;justify-content:space-between;padding:13px 14px;font-size:9px;letter-spacing:.1em}
+.artist-page .video-meta span:last-child{color:var(--acid)}
+.artist-page .socials{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.artist-page .social{min-width:0;border:1px solid var(--line);padding:23px;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s,background .2s}
+.artist-page .social:hover{border-color:var(--acid);background:#d4ff3808}
+.artist-page .social strong{font:700 28px var(--display);text-transform:uppercase}
+.artist-page .social small{display:block;color:#777;font-size:8px;letter-spacing:.1em;margin-top:5px}
+.artist-page .social b{color:var(--acid);font-size:17px;font-weight:400}
+.artist-page .end{padding:90px 3.2vw 110px;border-top:1px solid var(--line)}
+.artist-page .end h2{font:900 clamp(75px,14vw,190px)/.78 var(--display);letter-spacing:-.055em;text-transform:uppercase;margin:0}
+.artist-page .end h2 span{color:var(--acid)}
+@media(max-width:760px){
+ .artist-page .hero{min-height:84svh;padding:120px 5vw 25px}
+ .artist-page .hero-title{font-size:22vw}
+ .artist-page .hero-intro{margin-top:32px;align-items:start;flex-direction:column}
+ .artist-page .hero-bottom{font-size:7px}
+ .artist-page .section{padding:85px 5vw}
+ .artist-page .section-head{align-items:start;flex-direction:column;margin-bottom:40px}
+ .artist-page .section-head p{text-align:left;max-width:260px}
+ .artist-page .bio-grid{grid-template-columns:1fr;gap:28px}
+ .artist-page .photo-grid{gap:9px}
+ .artist-page .release-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:35px 12px}
+ .artist-page .record-data{grid-template-columns:1fr;gap:7px}
+ .artist-page .record-title{font-size:10vw}
+ .artist-page .record-year{text-align:left}
+ .artist-page .video-grid{grid-template-columns:1fr}
+ .artist-page .socials{grid-template-columns:1fr}
+ .artist-page .end{padding:65px 5vw 80px}
+}
+
+
+/* DARKDUCTION — MICRO INTERACTIONS / LIGHTWEIGHT MOTION */
+:root{--ease-out:cubic-bezier(.16,1,.3,1)}
+html{scroll-behavior:smooth}
+.topbar{transition:background .35s,border-color .35s}
+.topbar.scrolled{background:rgba(0,0,0,.97);border-bottom-color:#d4ff3840}
+.nav a,.brand,.menu,.archive-scroll,.social,.back-home,.footer a{
+ transition:color .25s,border-color .25s,background .25s,transform .35s var(--ease-out),letter-spacing .3s;
+}
+.nav a{position:relative}
+.nav a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:var(--acid);transition:right .3s var(--ease-out)}
+.nav a:hover:after{right:0}
+.menu{border:1px solid #ffffff30;padding:10px 13px;cursor:pointer}
+.menu:hover{color:var(--acid);border-color:var(--acid);transform:translateY(-2px)}
+.archive-scroll i{transition:width .35s var(--ease-out)}
+.archive-scroll:hover i{width:65px}
+.artist-page .photo,.artist-page .release-card,.artist-page .video-card{transition:transform .45s var(--ease-out),border-color .3s,background .3s}
+.artist-page .photo:hover,.artist-page .release-card:hover,.artist-page .video-card:hover{transform:translateY(-5px)}
+.artist-page .photo{border-color:#ffffff18}
+.artist-page .photo:hover{border-color:var(--acid)}
+.artist-page .release-card .art{transition:border-color .35s,box-shadow .35s}
+.artist-page .release-card:hover .art{border-color:var(--acid);box-shadow:0 12px 40px #d4ff3810}
+.artist-page .release-card .art img{transition:transform .75s var(--ease-out),filter .5s}
+.artist-page .release-card:hover .art img{transform:scale(1.045);filter:contrast(1.08) brightness(.88)}
+.artist-page .record-title{transition:color .25s,letter-spacing .3s var(--ease-out)}
+.artist-page .release-card:hover .record-title{color:var(--acid);letter-spacing:0}
+.artist-page .record-open span:last-child{transition:transform .3s,color .3s}
+.artist-page .release-card:hover .record-open span:last-child{transform:translateX(5px);color:var(--acid)}
+.artist-page .social{position:relative;overflow:hidden}
+.artist-page .social:before{content:"";position:absolute;inset:0;background:var(--acid);transform:translateX(-102%);transition:transform .45s var(--ease-out);z-index:0}
+.artist-page .social:hover:before{transform:translateX(0)}
+.artist-page .social>*{position:relative;z-index:1;transition:color .3s}
+.artist-page .social:hover strong,.artist-page .social:hover small,.artist-page .social:hover b{color:#050605}
+.artist-page .social:hover{border-color:var(--acid);transform:translateY(-3px)}
+.artist-page .video-card{overflow:hidden}
+.artist-page .video-thumb img{transition:transform .7s var(--ease-out),filter .5s}
+.artist-page .play:before{transition:transform .3s var(--ease-out),filter .3s}
+.artist-page .video-card:hover .play:before{transform:scale(1.35);filter:drop-shadow(0 0 14px var(--acid))}
+.artist-page .end h2 span{display:inline-block;transition:transform .4s var(--ease-out),text-shadow .4s}
+.artist-page .end:hover h2 span{transform:translateX(12px);text-shadow:0 0 25px #d4ff3870}
+.artist-page .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.artist-page .reveal.is-visible{opacity:1;transform:translateY(0)}
+.artist-page .section-head,.artist-page .bio-grid,.artist-page .photo-grid,.artist-page .socials,.artist-page .end{transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.artist-page .section-head.motion-ready,.artist-page .bio-grid.motion-ready,.artist-page .photo-grid.motion-ready,.artist-page .socials.motion-ready,.artist-page .end.motion-ready{opacity:0;transform:translateY(22px)}
+.artist-page .section-head.motion-ready.is-visible,.artist-page .bio-grid.motion-ready.is-visible,.artist-page .photo-grid.motion-ready.is-visible,.artist-page .socials.motion-ready.is-visible,.artist-page .end.motion-ready.is-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+ .artist-page .reveal,.artist-page .section-head.motion-ready,.artist-page .bio-grid.motion-ready,.artist-page .photo-grid.motion-ready,.artist-page .socials.motion-ready,.artist-page .end.motion-ready{opacity:1;transform:none}
+}
+
+
+/* MOBILE NAV — functional dropdown */
+.topbar{isolation:isolate}
+.menu{display:none;position:relative;z-index:35;cursor:pointer;touch-action:manipulation}
+.nav{z-index:34}
+@media(max-width:760px){
+ .topbar{min-height:64px}
+ .menu{display:inline-flex;align-items:center;justify-content:center;min-width:82px;min-height:40px}
+ .nav{
+  position:absolute!important;top:100%!important;left:0!important;right:0!important;
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  gap:0!important;padding:0 5vw!important;max-height:0;overflow:hidden;
+  opacity:0;visibility:hidden;pointer-events:none;
+  background:rgba(0,0,0,.985)!important;border-bottom:1px solid transparent;
+  transform:translateY(-8px);
+  transition:max-height .38s cubic-bezier(.16,1,.3,1),opacity .22s ease,transform .32s ease,padding .32s ease,border-color .22s ease;
+ }
+ .nav.open{
+  max-height:75vh;opacity:1;visibility:visible;pointer-events:auto;
+  padding:18px 5vw 24px!important;transform:translateY(0);
+  border-bottom-color:var(--line);
+ }
+ .nav a{display:block;padding:15px 0;border-bottom:1px solid #ffffff12;font-size:11px}
+ .nav a:last-child{border-bottom:0}
+ .nav a:after{display:none}
+}
+
 </style>
 </head>
 <body>
-<canvas id="liquid-field" aria-hidden="true"></canvas><div class="grain"></div><div class="progress" id="progress"></div>
-<div class="site">
-<header>
-<a class="logo" href="https://granularspectrum.bandcamp.com/">GRANULAR <i>/</i> SPECTRUM®</a>
-<nav id="nav"><a href="#about">ABOUT</a><a href="#visuals">VISUALS</a><a href="#discography">DISCOGRAPHY</a><a href="#video">VIDEO</a><a href="#connect">CONNECT</a></nav>
-<button class="menu" id="menu" aria-expanded="false">MENU +</button>
+
+
+
+
+<header class="topbar">
+ <a class="brand" href="https://granularspectrum.bandcamp.com/">GRANULAR <span>/</span> SPECTRUM®</a>
+ <nav class="nav" id="nav"><a href="#about">ABOUT</a><a href="#visuals">VISUALS</a><a href="#discography">DISCOGRAPHY</a><a href="#video">VIDEO</a><a href="#connect">CONNECT</a></nav>
+ <button class="menu" id="menu" type="button">MENU +</button>
 </header>
-<main>
-<section class="hero" id="top">
-<div class="topline"><span>GRANULAR SPECTRUM® / ARTIST FILE 003</span><span>COLOMBIA — WORLDWIDE</span></div>
-<div class="kicker">[ ARTIST / PRODUCER / AUDIOVISUAL ]</div>
-<h1><span>DARK</span><span class="outline">DUCTION.</span></h1>
-<div class="hero-meta"><div><strong>INDEPENDENT ELECTRONIC MUSIC</strong><span style="font-size:9px;color:#85897d;letter-spacing:.13em">EXPERIMENTAL / MINIMAL / HYPNOTIC TECHNO</span></div><p>A Colombian electronic music project exploring the darker edges of techno, sound experimentation and audiovisual expression.</p></div>
-<div class="scroll-mark">SCROLL TO EXPLORE ↓</div>
-</section>
+<main class="artist-page" id="top">
+ <section class="hero">
+  <div class="archive-topline"><span>GRANULAR SPECTRUM® / DArkduction</span><span>COLOMBIA — WORLDWIDE</span></div>
+  <div class="hero-title-wrap">
+   <div class="archive-index">[ ARTIST / PRODUCER / AUDIOVISUAL ]</div>
+   <h1 class="hero-title"><span>DARK</span><span class="outline">DUCTION<span style="color:var(--acid);-webkit-text-stroke:0">.</span></span></h1>
+   <div class="hero-intro"><p>Independent electronic music project exploring the darker edges of techno, sound experimentation and audiovisual expression.</p><a href="#about" class="archive-scroll"><i></i> ENTER ARTIST FILE</a></div>
+  </div>
+  <div class="hero-bottom"><span>EXPERIMENTAL / deep / HYPNOTIC TECHNO</span><span>SCROLL TO EXPLORE ↓</span><span>EST. 2014</span></div>
+ </section>
 
-<section class="section" id="about">
-<div class="section-head"><div><div class="index">[ ARTIST STATEMENT ]</div><h2>BEYOND<br>THE FRAME<span style="color:var(--acid)">.</span></h2></div><p>AN ONGOING EXPLORATION OF SOUND, MATTER, RHYTHM AND IMAGE.</p></div>
-<div class="bio-grid">
-<p class="bio-large">Sound as a physical territory. Rhythm as a shifting structure. Noise as a form of memory.</p>
-<div class="bio-copy"><p>Darkduction is a Colombian electronic music project active since 2014, moving between experimental techno, deep structures, hypnotic rhythms and audiovisual expression.</p><p>Alongside music production, the project develops visual and sonic environments, tools and live experiences. Darkduction is also the founder and curator of Granular Spectrum, an independent platform for experimental electronic music.</p><p>Its work explores the unstable border between structure and collapse, club functionality and abstraction, physical pulse and immersive sound.</p></div>
-</div>
-</section>
+ <section class="section" id="about">
+  <div class="section-head"><div><div class="index">[   ARTIST STATEMENT ]</div><h2>BEYOND<br>THE FRAME<span style="color:var(--acid)">.</span></h2></div><p>AN ONGOING EXPLORATION OF SOUND, MATTER, RHYTHM AND IMAGE.</p></div>
+  <div class="bio-grid">
+   <p class="bio-large">Sound as a physical territory. Rhythm as a shifting structure. Noise as a form of memory.</p>
+   <div class="bio-copy">
+    <p>Darkduction is a Colombian electronic music project active since 2014, moving between experimental techno, deep structures, hypnotic rhythms and audiovisual expression.</p>
+    <p>Alongside music production, the project develops visual and sonic environments, tools and live experiences. Darkduction is also the founder and curator of Granular Spectrum, an independent platform for experimental electronic music.</p>
+    <p>Its work explores the unstable border between structure and collapse, treating sound as a material that can be shaped, fragmented and reassembled through rhythm, texture and space.</p>
+   </div>
+  </div>
+ </section>
 
-<section class="section" id="visuals">
-<div class="section-head"><div><div class="index">[ ¿VISUAL DOCUMENTATION ]</div><h2>IMAGE<br>FRAGMENTS<span style="color:var(--acid)">.</span></h2></div><p>DOUMENTATION / PRESS / LIVE.</p>
-</div>
-<div class="photo-grid">
-<a class="photo" id="photoLink1" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" alt="Darkduction artist portrait" loading="lazy" decoding="async"><div class="photo-label"><span>01 /</span> ARTIST DOCUMENTATION</div></a>
-<a class="photo" id="photoLink2" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" alt="Darkduction live and studio documentation" loading="lazy" decoding="async"><div class="photo-label"><span>02 /</span> LIVE / STUDIO</div></a>
-</div>
-</section>
+ <section class="section" id="visuals">
+  <div class="section-head"><div><div class="index">[   VISUAL DOCUMENTATION ]</div><h2>IMAGE<br>FRAGMENTS<span style="color:var(--acid)">.</span></h2></div><p>DOCUMENTATION / PRESS / LIVE.</p>
+  </div>
+  <div class="photo-grid">
+   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" alt="Darkduction artist portrait" loading="lazy" decoding="async"><div class="photo-label"><span>01 /</span> darkduction</div></a>
+   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" alt="Darkduction live and studio documentation" loading="lazy" decoding="async"><div class="photo-label"><span>02 /</span> LIVE</div></a>
+  </div>
+ </section>
 
-<section class="section" id="discography">
-<div class="section-head"><div><div class="index">[ SELECTED DISCOGRAPHY ]</div><h2>SONIC<br>OBJECTS<span style="color:var(--acid)">.</span></h2></div><p>SELECTED RELEASES. EACH ARTWORK OPENS ITS ORIGINAL RELEASE PAGE.</p></div>
-<div class="release-grid" id="releaseGrid"></div>
-</section>
+ <section class="section" id="discography">
+  <div class="section-head"><div><div class="index">[ 03 / SELECTED DISCOGRAPHY ]</div><h2>SONIC<br>OBJECTS<span style="color:var(--acid)">.</span></h2></div><p>SELECTED RELEASES. EACH ARTWORK OPENS ITS ORIGINAL RELEASE PAGE.</p></div>
+  <div class="release-grid" id="releaseGrid"></div>
+ </section>
 
-<section class="section" id="video">
-<div class="section-head"><div><div class="index">[ MOVING IMAGE ]</div><h2>VIDEO<br>TRANSMISSIONS<span style="color:var(--acid)">.</span></h2></div><p>LIVE RECORDINGS / AUDIOVISUAL STUDIES / DOCUMENTATION.</p></div>
-<div class="video-grid" id="videoGrid"></div>
-</section>
+ <section class="section" id="video">
+  <div class="section-head"><div><div class="index">[ 04 / MOVING IMAGE ]</div><h2>VIDEO<br>TRANSMISSIONS<span style="color:var(--acid)">.</span></h2></div><p>LIVE RECORDINGS / AUDIOVISUAL STUDIES / DOCUMENTATION.</p></div>
+  <div class="video-grid" id="videoGrid"></div>
+ </section>
 
-<section class="section" id="connect">
-<div class="section-head"><div><div class="index">[ SIGNAL ROUTES ]</div><h2>CONNECT<br>TO THE SIGNAL<span style="color:var(--acid)">.</span></h2></div><p>FOLLOW THE PROJECT AND EXPLORE ITS SONIC ARCHIVE.</p></div>
-<div class="socials">
-<a class="social" href="https://soundcloud.com/darkduction" target="_blank" rel="noopener"><span><strong>SOUNDCLOUD</strong><small>DARKDUCTION</small></span><b>↗</b></a>
-<a class="social" href="https://darkductiongs.bandcamp.com/" target="_blank" rel="noopener"><span><strong>BANDCAMP</strong><small>DARKDUCTION</small></span><b>↗</b></a>
-<a class="social" href="https://www.instagram.com/darkduction/" target="_blank" rel="noopener"><span><strong>INSTAGRAM</strong><small>@DARKDUCTION</small></span><b>↗</b></a>
-<a class="social" href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener"><span><strong>GRANULAR SPECTRUM</strong><small>LABEL / PLATFORM</small></span><b>↗</b></a>
-</div>
-</section>
-
-<section class="end"><h2>NO FIXED<br>FORM<span>.</span></h2></section>
-<footer><span>DARKDUCTION / DRKDCTN</span><span>GRANULAR SPECTRUM®</span><span><a href="#top">BACK TO TOP ↑</a></span></footer>
+ <section class="section" id="connect">
+  <div class="section-head"><div><div class="index">[ 05 / SIGNAL ROUTES ]</div><h2>CONNECT<br>TO THE SIGNAL<span style="color:var(--acid)">.</span></h2></div><p>FOLLOW THE PROJECT AND EXPLORE ITS SONIC ARCHIVE.</p></div>
+  <div class="socials">
+   <a class="social" href="https://soundcloud.com/darkduction" target="_blank" rel="noopener"><span><strong>SOUNDCLOUD</strong><small>DARKDUCTION</small></span><b>↗</b></a>
+   <a class="social" href="https://darkductiongs.bandcamp.com/" target="_blank" rel="noopener"><span><strong>BANDCAMP</strong><small>DARKDUCTION</small></span><b>↗</b></a>
+   <a class="social" href="https://www.instagram.com/darkduction/" target="_blank" rel="noopener"><span><strong>INSTAGRAM</strong><small>@DARKDUCTION</small></span><b>↗</b></a>
+   <a class="social" href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener"><span><strong>GRANULAR SPECTRUM</strong><small>LABEL / PLATFORM</small></span><b>↗</b></a>
+  </div>
+ </section>
+ <section class="end"><h2>NO FIXED<br>FORM<span>.</span></h2></section>
+ <footer class="footer"><div><strong>DARKDUCTION / DRKDCTN</strong><br>Artist file / 003</div><div>Medellín / Colombia<br><a href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener">Granular Spectrum ↗</a></div><div class="right"><a class="backtop" href="#top">Back to top ↑</a><br>© <span id="year"></span> — All frequencies reserved.</div></footer>
 </main>
-</div>
-<script>
-/* EDITABLE CONTENT — add new releases by duplicating an object. */
-const RELEASES = [
- {year:"2026 / PRE-ORDER",title:"ATRUM",image:"https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1000/v1793747750/a4001183809_10.jpg",url:"https://darkductiongs.bandcamp.com/album/atrum"},
- {year:"2026",title:"LAST//SIGNAL",image:"",url:"https://darkductiongs.bandcamp.com/"},
- {year:"2026",title:"METASTABLE",image:"",url:"https://darkductiongs.bandcamp.com/album/metastable"},
- {year:"2025",title:"LETARGO",image:"",url:"https://granularspectrum.bandcamp.com/album/letargo"},
- {year:"2024",title:"CRIES FROM INSIDE",image:"",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
- {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"}
-];
-const VIDEOS = [
- {title:"LIVE / AUDIOVISUAL 01",url:"https://www.youtube.com/watch?v=9Bnqsj4EjUU&list=RD9Bnqsj4EjUU&start_radio=1&t=1812s"},
- {title:"LIVE / AUDIOVISUAL 02",url:"https://www.youtube.com/watch?v=wxwq8Px5or0&list=RDwxwq8Px5or0&start_radio=1&t=2320s"},
- {title:"LIVE / AUDIOVISUAL 03",url:"https://www.youtube.com/watch?v=8gpJp98Yxtg&list=RD8gpJp98Yxtg&start_radio=1&t=96s"}
-];
-const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-document.getElementById("releaseGrid").innerHTML=RELEASES.map((r,i)=>`
-<a class="release" href="${safe(r.url)}" target="_blank" rel="noopener">
- <div class="cover">${r.image?`<img src="${safe(r.image)}" alt="${safe(r.title)} cover artwork" loading="lazy" decoding="async">`:`<div class="cover-pending" role="img" aria-label="Artwork pending for ${safe(r.title)}"></div>`}</div>
- <div class="release-info"><div><small>${safe(r.year)}</small><strong>${safe(r.title)}</strong></div><em>OPEN ↗</em></div>
-</a>`).join("");
-function ytId(raw){try{const u=new URL(raw);if(u.hostname.includes("youtu.be"))return u.pathname.split("/").filter(Boolean)[0]||"";return u.searchParams.get("v")||u.pathname.split("/").filter(Boolean).pop()||""}catch{return""}}
-document.getElementById("videoGrid").innerHTML=VIDEOS.map(v=>{const id=ytId(v.url);return `<a class="video" href="${safe(v.url)}" target="_blank" rel="noopener"><div class="video-thumb"><img src="https://i.ytimg.com/vi/${safe(id)}/mqdefault.jpg" alt="${safe(v.title)} thumbnail" loading="lazy" decoding="async"><div class="play"></div></div><div class="video-meta"><span>${safe(v.title)}</span><span>WATCH ↗</span></div></a>`}).join("");
-const menu=document.getElementById("menu"),nav=document.getElementById("nav");
-menu.addEventListener("click",()=>{const open=nav.classList.toggle("open");menu.setAttribute("aria-expanded",String(open));menu.textContent=open?"CLOSE −":"MENU +"});
-nav.addEventListener("click",e=>{if(e.target.closest("a")){nav.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="MENU +"}});
-const progress=document.getElementById("progress");let scrollQueued=false;
-addEventListener("scroll",()=>{if(scrollQueued)return;scrollQueued=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${max?scrollY/max:0})`;scrollQueued=false})},{passive:true});
+<div class="signal-progress" id="signalProgress"></div>
 
-/* SINGLE-CANVAS LIQUID FIELD — adapted from the original Releases atmosphere.
-   One 2D context, capped frame rate and pixel ratio; pauses in background tabs. */
+<script>
+/* Artist content: only verified release destinations and existing artwork are used. */
 (()=>{
- const canvas=document.getElementById("liquid-field"),ctx=canvas.getContext("2d",{alpha:true});
- const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,coarse=matchMedia("(pointer: coarse)").matches;
- let w=innerWidth,h=innerHeight,dpr=1,last=0,mx=w*.5,my=h*.5,px=mx,py=my,energy=0,active=false;
- const wakes=[],rings=[];
- const pools=[{x:.17,y:.28,r:250,p:.2},{x:.78,y:.68,r:310,p:2.1},{x:.52,y:.08,r:190,p:4.2}];
- function resize(){dpr=Math.min(devicePixelRatio||1,1.2);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
- addEventListener("resize",resize,{passive:true});resize();
- if(!coarse)addEventListener("pointermove",e=>{const dx=e.clientX-px,dy=e.clientY-py,s=Math.hypot(dx,dy);mx=e.clientX;my=e.clientY;px=mx;py=my;active=true;energy=Math.min(1,s/24);if(s>3){wakes.push({x:mx,y:my,r:Math.min(170,48+s*2.4),life:1,a:Math.atan2(dy,dx)});if(s>8)rings.push({x:mx,y:my,r:8,life:1})}if(wakes.length>18)wakes.shift();if(rings.length>10)rings.shift()},{passive:true});
- function glow(x,y,rx,ry,a,rot=0){ctx.save();ctx.translate(x,y);ctx.rotate(rot);const g=ctx.createRadialGradient(0,0,0,0,0,Math.max(rx,ry));g.addColorStop(0,`rgba(205,255,48,${a})`);g.addColorStop(.32,`rgba(145,205,32,${a*.55})`);g.addColorStop(1,"rgba(60,100,12,0)");ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);ctx.fill();ctx.restore()}
- function line(x,y,r,a,t){ctx.beginPath();for(let i=0;i<=120;i++){const q=i/120*Math.PI*2,k=1+Math.sin(q*3+t)*.04+Math.sin(q*7-t*1.3)*.022,X=x+Math.cos(q)*r*k,Y=y+Math.sin(q)*r*.68*k;if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y)}ctx.closePath();ctx.strokeStyle=`rgba(205,255,48,${a})`;ctx.lineWidth=1;ctx.stroke()}
- function frame(now){if(document.hidden){requestAnimationFrame(frame);return}if(now-last<33){requestAnimationFrame(frame);return}const dt=Math.min(50,now-last||33);last=now;ctx.clearRect(0,0,w,h);
-  pools.forEach((p,i)=>{const t=now*.00015+p.p,x=(p.x+Math.sin(t)*.1)*w,y=(p.y+Math.cos(t*.8)*.09)*h,r=p.r*(.94+.06*Math.sin(t*1.4));ctx.save();ctx.globalCompositeOperation="screen";ctx.filter="blur(27px)";glow(x,y,r*1.15,r*.72,.17);glow(x+Math.sin(t)*r*.2,y+Math.cos(t)*r*.16,r*.6,r*.4,.11);ctx.filter="none";line(x,y,r*.72,.12,t*2);line(x,y,r*.94,.07,t*1.6);ctx.restore()});
-  if(active&&!coarse){ctx.save();ctx.globalCompositeOperation="screen";ctx.filter="blur(24px)";glow(mx,my,150+energy*70,110+energy*40,.42+energy*.2);ctx.filter="none";for(let i=0;i<4;i++)line(mx,my,(80+i*28),.25-i*.045,now*.0015+i);ctx.restore()}
-  ctx.save();ctx.globalCompositeOperation="screen";wakes.forEach(o=>{o.life-=dt*.00024;if(o.life>0){ctx.save();ctx.translate(o.x,o.y);ctx.rotate(o.a);ctx.filter="blur(15px)";glow(0,0,o.r*1.5,o.r*.55,o.life*.35);ctx.filter="none";line(0,0,o.r*.75,o.life*.35,now*.002);ctx.restore()}});rings.forEach(o=>{o.life-=dt*.00034;o.r+=dt*.08;if(o.life>0){ctx.beginPath();ctx.ellipse(o.x,o.y,o.r*1.3,o.r*.8,0,0,Math.PI*2);ctx.strokeStyle=`rgba(205,255,48,${o.life*.55})`;ctx.lineWidth=1.3;ctx.stroke()}});ctx.restore();
-  for(let i=wakes.length-1;i>=0;i--)if(wakes[i].life<=0)wakes.splice(i,1);for(let i=rings.length-1;i>=0;i--)if(rings[i].life<=0)rings.splice(i,1);energy*=.94;requestAnimationFrame(frame)
- }
- if(!reduce)requestAnimationFrame(frame);else pools.forEach(p=>glow(p.x*w,p.y*h,p.r,p.r*.7,.12));
+ const RELEASES=[
+  {year:"2026 / PRE-ORDER",title:"ATRUM",image:"https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1000/v1793747750/a4001183809_10.jpg",url:"https://darkductiongs.bandcamp.com/album/atrum"},
+  {year:"2026",title:"LAST//SIGNAL",image:"here",url:"https://darkductiongs.bandcamp.com/"},
+  {year:"2026",title:"METASTABLE",image:"here",url:"https://darkductiongs.bandcamp.com/album/metastable"},
+  {year:"2025",title:"LETARGO",image:"here",url:"https://granularspectrum.bandcamp.com/album/letargo"},
+  {year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
+  {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"},
+	 {year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
+  {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"},{year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
+  {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"}
+ ];
+ const VIDEOS=[
+  {title:"LIVE / AUDIOVISUAL 01",url:"https://www.youtube.com/watch?v=9Bnqsj4EjUU&list=RD9Bnqsj4EjUU&start_radio=1&t=1812s"},
+  {title:"LIVE / AUDIOVISUAL 02",url:"https://www.youtube.com/watch?v=wxwq8Px5or0&list=RDwxwq8Px5or0&start_radio=1&t=2320s"},
+  {title:"LIVE / AUDIOVISUAL 03",url:"https://www.youtube.com/watch?v=8gpJp98Yxtg&list=RD8gpJp98Yxtg&start_radio=1&t=96s"}
+ ];
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const ytId=raw=>{try{const u=new URL(raw);if(u.hostname.includes("youtu.be"))return u.pathname.split("/").filter(Boolean)[0]||"";return u.searchParams.get("v")||""}catch{return""}};
+ document.getElementById("releaseGrid").innerHTML=RELEASES.map(r=>`
+  <a class="release-card" href="${esc(r.url)}" target="_blank" rel="noopener">
+   <div class="art">${r.image?`<img src="${esc(r.image)}" alt="${esc(r.title)} artwork" loading="lazy" decoding="async" onerror="this.remove();this.nextElementSibling.hidden=false"><div class="art-pending" hidden>ARTWORK UNAVAILABLE</div>`:`<div class="art-pending">ARTWORK / IMAGE PENDING</div>`}</div>
+   <div class="record-data"><div class="record-title">${esc(r.title)}</div><div class="record-year">${esc(r.year)}</div><div class="record-open"><span>LISTEN / PURCHASE</span><span>OPEN TRANSMISSION ↗</span></div></div>
+  </a>`).join("");
+ document.getElementById("videoGrid").innerHTML=VIDEOS.map(v=>{const id=ytId(v.url);return `<a class="video-card" href="${esc(v.url)}" target="_blank" rel="noopener"><div class="video-thumb"><img src="https://i.ytimg.com/vi/${esc(id)}/mqdefault.jpg" alt="${esc(v.title)} thumbnail" loading="lazy" decoding="async"><div class="play"></div></div><div class="video-meta"><span>${esc(v.title)}</span><span>WATCH ↗</span></div></a>`}).join("");
+ const menu=document.getElementById("menu"),nav=document.getElementById("nav");
+ menu.setAttribute("aria-controls","nav");menu.setAttribute("aria-expanded","false");
+ menu.addEventListener("click",()=>{
+  const open=nav.classList.toggle("open");
+  menu.textContent=open?"CLOSE −":"MENU +";
+  menu.setAttribute("aria-expanded",String(open));
+ });
+ const closeMenu=()=>{nav.classList.remove("open");menu.textContent="MENU +";menu.setAttribute("aria-expanded","false")};
+ nav.addEventListener("click",e=>{if(e.target.closest("a"))closeMenu()});
+ document.addEventListener("click",e=>{if(!nav.contains(e.target)&&!menu.contains(e.target))closeMenu()});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+ addEventListener("resize",()=>{if(innerWidth>760)closeMenu()},{passive:true});
+ document.getElementById("year").textContent=new Date().getFullYear();
+ const progress=document.getElementById("signalProgress"),bar=document.querySelector(".topbar");let queued=false;
+ addEventListener("scroll",()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty("--scroll",max?scrollY/max:0);bar.classList.toggle("scrolled",scrollY>40);queued=false})},{passive:true});
 })();
 </script>
+
+
+
+
+<script>
+/* Lightweight reveal-on-scroll and header state. Runs only on scroll/entry. */
+(()=>{
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const header=document.querySelector('.topbar');
+ let queued=false;
+ const update=()=>{header.classList.toggle('scrolled',scrollY>36);queued=false};
+ addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});
+ update();
+ if(reduce)return;
+ const targets=document.querySelectorAll('.artist-page .section-head,.artist-page .bio-grid,.artist-page .photo-grid,.artist-page .socials,.artist-page .end,.artist-page .release-card,.artist-page .video-card');
+ targets.forEach(el=>el.classList.add('motion-ready'));
+ if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}
+   });
+  },{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+  targets.forEach(el=>io.observe(el));
+ }else targets.forEach(el=>el.classList.add('is-visible'));
+})();
+</script>
+
 </body>
 </html>
