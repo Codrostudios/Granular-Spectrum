@@ -1,1 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050605">
+<title>SHAKTI — Granular Spectrum</title>
+<meta name="description" content="Shakti — artist profile at Granular Spectrum.">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://f4.bcbits.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050605;--fg:#e8e9e2;--muted:#777b70;--line:#252820;--acid:#d4ff38;--display:"Barlow Condensed",Impact,sans-serif;--mono:"Space Mono",monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--acid);color:#050605}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.055;background:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff08 4px,transparent 5px 7px)}
+.site{position:relative;z-index:2}
+header{height:82px;position:fixed;z-index:10;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid #ffffff12;background:#050605ed}
+.logo{font:700 17px var(--display);letter-spacing:.09em}.logo i{color:var(--acid);font-style:normal}
+nav{display:flex;gap:clamp(16px,3vw,42px);align-items:center}
+nav a{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#a5a99d;transition:color .2s}
+nav a:hover{color:var(--acid)}
+.menu{display:none;border:1px solid var(--line);background:none;color:var(--fg);padding:9px 12px;font-size:9px}
+main{width:min(1440px,90vw);margin:auto}
+.hero{min-height:100svh;padding:150px 0 75px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.topline,.bottomline{display:flex;justify-content:space-between;gap:20px;color:#777b70;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.kicker{color:var(--acid);font-size:10px;letter-spacing:.2em;margin:9vh 0 20px}
+h1{font:900 clamp(82px,17vw,250px)/.72 var(--display);letter-spacing:-.045em;margin:0;text-transform:uppercase}
+h1 span{display:block}
+h1 .outline{color:transparent;-webkit-text-stroke:1px #dfe2d5}
+.hero-meta{display:flex;justify-content:space-between;align-items:end;margin-top:55px;gap:35px}
+.hero-meta p{max-width:420px;color:#a1a497;font-size:11px;line-height:1.9;margin:0}
+.hero-meta strong{display:block;color:var(--acid);font:700 11px var(--mono);letter-spacing:.12em;margin-bottom:10px}
+.scroll-mark{position:absolute;right:0;bottom:40px;color:#777b70;font-size:9px;writing-mode:vertical-rl;letter-spacing:.2em}
+.section{padding:125px 0;border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:end;margin-bottom:45px}
+.index{font-size:9px;color:var(--acid);letter-spacing:.18em;margin-bottom:17px}
+h2{font:800 clamp(48px,8vw,112px)/.82 var(--display);letter-spacing:-.025em;text-transform:uppercase;margin:0}
+.section-head p{justify-self:end;max-width:380px;color:#8d9185;font-size:10px;line-height:1.9;margin:0}
+.bio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:8vw;align-items:start}
+.bio-large{font:500 clamp(26px,3.5vw,48px)/1.12 var(--display);text-transform:uppercase;max-width:740px;margin:0}
+.bio-copy{font-size:10px;line-height:2;color:#999d91}
+.bio-copy p{margin:0 0 18px}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.photo{position:relative;aspect-ratio:4/5;overflow:hidden;background:#10130c;border:1px solid #ffffff14}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s;filter:grayscale(.12) contrast(1.04)}
+.photo:hover img{transform:scale(1.035);filter:grayscale(0) contrast(1.08)}
+.photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#050605a8);pointer-events:none}
+.photo-label{position:absolute;z-index:1;bottom:17px;left:18px;font-size:9px;letter-spacing:.15em;color:#e9ebdf}
+.photo-label span{color:var(--acid);margin-right:12px}
+.release-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 18px}
+.release{min-width:0;display:block}
+.cover{aspect-ratio:1/1;position:relative;overflow:hidden;background:#0b0e08;border:1px solid #ffffff18}
+.cover img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;filter:saturate(.82)}
+.release:hover .cover img{transform:scale(1.045);filter:saturate(1.08)}
+.cover-pending{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 65% 30%,#52621c 0,#1b2410 22%,#0b0e08 65%)}
+.cover-pending:before,.cover-pending:after{content:"";position:absolute;border:1px solid #d4ff3850;border-radius:50%;width:78%;aspect-ratio:1;left:10%;top:12%;transform:rotate(-23deg) scaleY(.38);box-shadow:0 0 70px #d4ff3820,inset 0 0 55px #d4ff3818}
+.cover-pending:after{transform:rotate(47deg) scaleY(.24);width:100%;left:0;top:30%;border-color:#e7ff9a36}
+.release-info{display:flex;justify-content:space-between;align-items:start;gap:14px;padding-top:13px;border-top:1px solid var(--line);margin-top:10px}
+.release-info small{display:block;color:var(--acid);font-size:8px;letter-spacing:.12em;margin-bottom:7px}
+.release-info strong{font:700 24px/.95 var(--display);text-transform:uppercase;display:block}
+.release-info em{font-style:normal;color:#85897d;font-size:8px;white-space:nowrap}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.video{display:block;border:1px solid var(--line);background:#0b0d09}
+.video-thumb{aspect-ratio:16/9;position:relative;background:#12170b;overflow:hidden}
+.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.35) contrast(1.1);transition:transform .5s,filter .5s}
+.video:hover img{transform:scale(1.04);filter:grayscale(0)}
+.play{position:absolute;inset:0;display:grid;place-items:center;background:#0003}
+.play:before{content:"";width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:15px solid var(--acid);filter:drop-shadow(0 0 10px #d4ff38)}
+.video-meta{display:flex;justify-content:space-between;padding:13px 14px;font-size:9px;letter-spacing:.1em}
+.video-meta span:last-child{color:var(--acid)}
+.socials{display:flex;flex-wrap:wrap;gap:12px}
+.social{min-width:220px;flex:1;border:1px solid var(--line);padding:23px;display:flex;justify-content:space-between;align-items:center;transition:border-color .2s,background .2s}
+.social:hover{border-color:var(--acid);background:#d4ff3808}
+.social strong{font:700 28px var(--display);text-transform:uppercase}
+.social small{display:block;color:#777b70;font-size:8px;letter-spacing:.1em;margin-top:5px}
+.social b{color:var(--acid);font-size:17px;font-weight:400}
+.end{padding:100px 0 45px;border-top:1px solid var(--line)}
+.end h2{font-size:clamp(65px,13vw,180px);line-height:.75}
+.end h2 span{color:var(--acid)}
+footer{border-top:1px solid var(--line);padding:22px 0 35px;display:flex;justify-content:space-between;gap:20px;color:#686d61;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+footer a:hover{color:var(--acid)}
+.progress{position:fixed;z-index:12;left:0;top:0;height:2px;width:100%;background:var(--acid);transform:scaleX(0);transform-origin:left}
+@media(max-width:760px){
+ header{height:68px;padding:0 5vw}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;padding:22px 5vw 28px;background:#080a07f5;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}nav.open{display:flex}
+ main{width:90vw}.hero{padding-top:125px;min-height:90svh}.topline,.bottomline{font-size:7px}.hero-meta{display:block;margin-top:35px}.hero-meta p{margin-top:25px}.scroll-mark{display:none}
+ .section{padding:82px 0}.section-head,.bio-grid{grid-template-columns:1fr}.section-head p{justify-self:start}.photo-grid{gap:9px}.release-grid{grid-template-columns:repeat(2,1fr);gap:25px 10px}.release-info strong{font-size:20px}.release-info em{font-size:7px}
+ .video-grid{grid-template-columns:1fr}.video-meta{font-size:8px}.social{min-width:100%}footer{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
+/* LIGHT MICRO-INTERACTIONS — no canvas, WebGL or continuous render loop */
+html{scroll-padding-top:90px}
+nav a{position:relative;padding:9px 0}
+nav a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--acid);transition:right .28s ease}
+nav a:hover:after{right:0}
+.menu{cursor:pointer;transition:color .22s,border-color .22s,background .22s,transform .22s}
+.menu:hover{color:var(--acid);border-color:var(--acid);background:#d4ff3810;transform:translateY(-2px)}
+.menu:active{transform:translateY(0) scale(.97)}
+.social{position:relative;overflow:hidden;isolation:isolate;transition:color .3s,border-color .3s,transform .3s}
+.social:before{content:"";position:absolute;inset:0;background:var(--acid);transform:translateY(102%);transition:transform .32s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.social:hover{color:#050605;border-color:var(--acid);transform:translateY(-4px)}
+.social:hover:before{transform:translateY(0)}
+.social:hover small,.social:hover b{color:#202518}
+.release,.video,.photo{transition:transform .35s ease,border-color .3s,box-shadow .3s}
+.release:hover,.video:hover{transform:translateY(-5px)}
+.video{overflow:hidden}
+.video:hover{border-color:#687d25;box-shadow:0 12px 34px #0008}
+.video:hover .play:before{transform:scale(1.22);filter:drop-shadow(0 0 15px #d4ff38)}
+.play:before{transition:transform .25s,filter .25s}
+.photo:hover{border-color:#d4ff3860;transform:translateY(-3px)}
+.end h2{transition:letter-spacing .45s ease}
+.end:hover h2{letter-spacing:.005em}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(max-width:760px){
+ nav{display:flex;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(-8px);max-height:0;overflow:hidden;transition:opacity .22s,transform .22s,max-height .28s,visibility .22s}
+ nav.open{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0);max-height:360px}
+ nav a{width:100%;padding:8px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .reveal{opacity:1;transform:none}
+ nav,.menu,.social,.social:before,.release,.video,.photo,.end h2{transition:none!important}
+}
+
+
+/* ORIGINAL GRANULAR SPECTRUM HEADER — logo and primary site navigation */
+.topbar{position:fixed;z-index:30;top:0;left:0;width:100%;min-height:76px;padding:16px 3.2vw;display:flex;justify-content:space-between;align-items:center;gap:28px;border-bottom:1px solid #ffffff20;background:rgba(0,0,0,.94)}
+.brand-image{display:flex;align-items:center;justify-content:flex-start;min-width:150px;min-height:30px;flex:0 0 auto}
+.brand-image img{display:block;width:auto;height:auto;max-width:210px;max-height:42px;object-fit:contain}
+.nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(14px,2vw,30px);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.nav a{color:#aaa;white-space:nowrap}
+.nav a:hover{color:var(--acid)}
+.menu{display:none;background:transparent;border:1px solid #ffffff30;padding:10px 13px;color:var(--fg);font-size:10px;letter-spacing:.1em}
+@media(max-width:760px){
+ .topbar{min-height:64px;padding:14px 5vw}
+ .brand-image img{max-width:155px;max-height:34px}
+ .menu{display:inline-flex;align-items:center;justify-content:center;min-width:82px;min-height:40px}
+ .nav{position:absolute!important;top:100%!important;left:0!important;right:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;padding:0 5vw!important;max-height:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;background:rgba(0,0,0,.985)!important;border-bottom:1px solid transparent;transform:translateY(-8px);transition:max-height .38s cubic-bezier(.16,1,.3,1),opacity .22s ease,transform .32s ease,padding .32s ease,border-color .22s ease}
+ .nav.open{max-height:75vh;opacity:1;visibility:visible;pointer-events:auto;padding:18px 5vw 24px!important;transform:translateY(0);border-bottom-color:var(--line)}
+ .nav a{display:block;width:100%;padding:15px 0;border-bottom:1px solid #ffffff12;font-size:11px}
+ .nav a:last-child{border-bottom:0}
+}
+
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div><div class="progress" id="progress"></div>
+<div class="site">
+<header class="topbar">
+<a class="brand brand-image" id="siteLogoLink" href="index.html" aria-label="Granular Spectrum home">
+<img id="siteLogo" alt="Granular Spectrum" src="https://res.cloudinary.com/rgriiass/image/upload/v1793747620/Sin-t%C3%ADtulo-1-_Recuperado.png">
+<span id="siteLogoFallback" style="display:none">GRANULAR <i>/</i> SPECTRUM®</span>
+</a>
+<nav class="nav" id="nav">
+<a href="index.html">HOME</a>
+<a href="releases.html">RELEASES</a>
+<a href="artists.html">ARTISTS</a>
+<a href="about.html">ABOUT</a>
+<a href="archive.html">ARCHIVE</a>
+<a href="contact.html">CONTACT</a>
+<a href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener">BANDCAMP ↗</a>
+</nav>
+<button class="menu" id="menu" aria-expanded="false" aria-controls="nav" aria-label="Open menu" type="button">MENU +</button>
+</header>
+<main>
+<section class="hero" id="top">
+<div class="topline"><span>GRANULAR SPECTRUM® / ARTIST FILE 002</span><span>COLOMBIA — WORLDWIDE</span></div>
+<div class="kicker">[ ARTIST / GRANULAR SPECTRUM® ]</div>
+<h1><span>SHAKTI</span><span class="outline">.</span></h1>
+<div class="hero-meta"><div><strong>GRANULAR SPECTRUM® ARTIST</strong><span style="font-size:9px;color:#85897d;letter-spacing:.13em">GRANULAR SPECTRUM® ARTIST</span></div><p>Explore Shakti’s music, artistic identity and selected works.</p></div>
+<div class="scroll-mark">SCROLL TO EXPLORE ↓</div>
+</section>
+
+<section class="section" id="about">
+<div class="section-head"><div><div class="index">[ ARTIST STATEMENT ]</div><h2>BEYOND<br>THE FRAME<span style="color:var(--acid)">.</span></h2></div><p>AN ONGOING EXPLORATION OF SOUND, MATTER, RHYTHM AND IMAGE.</p></div>
+<div class="bio-grid">
+<p class="bio-large">A sonic identity within the Granular Spectrum artist network.</p>
+<div class="bio-copy"><p>Shakti is a Colombian electronic music project active since 2014, moving between experimental techno, deep structures, hypnotic rhythms and audiovisual expression.</p><p>Alongside music production, the project develops visual and sonic environments, tools and live experiences. Shakti is also the founder and curator of Granular Spectrum, an independent platform for experimental electronic music.</p><p>Official information about genres, influences, performances and audiovisual work can be added when available.</p></div>
+</div>
+</section>
+
+<section class="section" id="visuals">
+<div class="section-head"><div><div class="index">[   VISUAL DOCUMENTATION ]</div><h2>IMAGE<br>FRAGMENTS<span style="color:var(--acid)">.</span></h2></div><p>DOCUMENTATION / PRESS / LIVE.</p>
+</div>
+<div class="photo-grid">
+<div class="photo"><div class="cover-pending"></div><div class="photo-label"><span>01 /</span> SHAKTI — PHOTO URL PENDING</div></div>
+<div class="photo"><div class="cover-pending"></div><div class="photo-label"><span>02 /</span> SHAKTI — PHOTO URL PENDING</div></div>
+</div>
+</section>
+
+<section class="section" id="discography">
+<div class="section-head"><div><div class="index">[   SELECTED DISCOGRAPHY ]</div><h2>SONIC<br>OBJECTS<span style="color:var(--acid)">.</span></h2></div><p>SELECTED RELEASES. EACH ARTWORK OPENS ITS ORIGINAL RELEASE PAGE.</p></div>
+<div class="release-grid" id="releaseGrid"></div>
+</section>
+
+<section class="section" id="video">
+<div class="section-head"><div><div class="index">[   MOVING IMAGE ]</div><h2>VIDEO<br>TRANSMISSIONS<span style="color:var(--acid)">.</span></h2></div><p>LIVE RECORDINGS / AUDIOVISUAL STUDIES / DOCUMENTATION.</p></div>
+<div class="video-grid" id="videoGrid"></div>
+</section>
+
+<section class="section" id="connect">
+<div class="section-head"><div><div class="index">[   SIGNAL ROUTES ]</div><h2>CONNECT<br>TO THE SIGNAL<span style="color:var(--acid)">.</span></h2></div><p>FOLLOW THE PROJECT AND EXPLORE ITS SONIC ARCHIVE.</p></div>
+<div class="socials">
+<a class="social" href="https://soundcloud.com/shakti_666" target="_blank" rel="noopener"><span><strong>SOUNDCLOUD</strong><small>SHAKTI</small></span><b>↗</b></a>
+<a class="social" href="https://soundcloud.com/shakti_666" target="_blank" rel="noopener"><span><strong>BANDCAMP</strong><small>SHAKTI</small></span><b>↗</b></a>
+<a class="social" href="https://www.instagram.com/darkduction/" target="_blank" rel="noopener"><span><strong>INSTAGRAM</strong><small>@SHAKTI</small></span><b>↗</b></a>
+<a class="social" href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener"><span><strong>GRANULAR SPECTRUM</strong><small>LABEL / PLATFORM</small></span><b>↗</b></a>
+</div>
+</section>
+
+<section class="end"><h2>NO FIXED<br>FORM<span>.</span></h2></section>
+<footer><span>SHAKTI</span><span>GRANULAR SPECTRUM®</span><span><a href="#top">BACK TO TOP ↑</a></span></footer>
+</main>
+</div>
+<script>
+/* EDITABLE CONTENT — add new releases by duplicating an object. */
+const RELEASES = [
+ {year:"SHAKTI / RELEASE 01",title:"ARTWORK TO BE ADDED",image:"",url:""},
+ {year:"SHAKTI / RELEASE 02",title:"ARTWORK TO BE ADDED",image:"",url:""},
+ {year:"SHAKTI / RELEASE 03",title:"ARTWORK TO BE ADDED",image:"",url:""}
+];
+const VIDEOS = [];
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+document.getElementById("releaseGrid").innerHTML=RELEASES.map((r,i)=>`
+<div class="release">
+ <div class="cover">${r.image?`<img src="${safe(r.image)}" alt="${safe(r.title)} cover artwork" loading="lazy" decoding="async">`:`<div class="cover-pending" role="img" aria-label="Artwork pending"></div>`}</div>
+ <div class="release-info"><div><small>${safe(r.year)}</small><strong>${safe(r.title)}</strong></div><em>ARTWORK PENDING</em></div>
+</div>`).join("");
+function ytId(raw){try{const u=new URL(raw);if(u.hostname.includes("youtu.be"))return u.pathname.split("/").filter(Boolean)[0]||"";return u.searchParams.get("v")||u.pathname.split("/").filter(Boolean).pop()||""}catch{return""}}
+document.getElementById("videoGrid").innerHTML = `<div class="video" style="grid-column:1/-1;padding:22px;color:#85897d;font-size:10px;line-height:1.8">VIDEO LINKS / THUMBNAILS CAN BE ADDED WHEN THE OFFICIAL SHAKTI VIDEOS ARE PROVIDED.</div>`;
+const menu=document.getElementById("menu"),nav=document.getElementById("nav");
+const closeMenu=()=>{nav.classList.remove("open");menu.setAttribute("aria-expanded","false");menu.textContent="MENU +"};
+menu.addEventListener("click",()=>{const open=!nav.classList.contains("open");nav.classList.toggle("open",open);menu.setAttribute("aria-expanded",String(open));menu.textContent=open?"CLOSE −":"MENU +"});
+nav.addEventListener("click",e=>{if(e.target.closest("a"))closeMenu()});
+document.addEventListener("click",e=>{if(nav.classList.contains("open")&&!nav.contains(e.target)&&!menu.contains(e.target))closeMenu()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+addEventListener("resize",()=>{if(innerWidth>760)closeMenu()},{passive:true});
+const progress=document.getElementById("progress");let scrollQueued=false;
+addEventListener("scroll",()=>{if(scrollQueued)return;scrollQueued=true;requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.transform=`scaleX(${max?scrollY/max:0})`;scrollQueued=false})},{passive:true});
+
+/* Reveal sections as they enter the viewport; no perpetual animation loop. */
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!reduceMotion && "IntersectionObserver" in window){
+ const revealTargets=document.querySelectorAll(".section-head,.bio-grid,.photo,.release,.video,.social,.end");
+ revealTargets.forEach(el=>el.classList.add("reveal"));
+ const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}});
+ },{threshold:.12,rootMargin:"0px 0px -35px 0px"});
+ revealTargets.forEach(el=>observer.observe(el));
+}
+
+
+</script>
+</body>
+</html>
