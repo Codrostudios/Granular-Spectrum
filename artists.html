@@ -285,7 +285,7 @@ body{background:#000!important}
     </div>
     <div class="artists-title-wrap">
       <div class="archive-index">[ SOUND / PEOPLE / FREQUENCIES ]</div>
-      <h1 class="artists-title"><span>ARTISTs</span><span class="outline">ROSTER<span class="acid-dot">.</span></span></h1>
+      <h1 class="artists-title"><span>ARTIST</span><span class="outline">ROSTER<span class="acid-dot">.</span></span></h1>
       <div class="artists-intro">
         <p>Independent voices operating across experimental electronics, techno, industrial pressure and the edges of sound.</p>
         <a href="#roster" class="archive-scroll"><i></i> EXPLORE ARTISTS</a>
@@ -489,8 +489,9 @@ body{background:#000!important}
 <script>
 /* ============================================================
    GRANULAR SPECTRUM — EDITABLE SITE CONFIGURATION
-   Change image URLs, destinations, labels and subpage URLs here.
-   Use full image URLs (https://...) for logo and release artwork.
+   ARTISTAS: busca "EDITAR ARTISTAS DEL SELLO" para cambiar
+   nombres, enlaces, códigos, ubicaciones y agregar más perfiles.
+   También puedes editar logo, navegación y lanzamientos.
    ============================================================ */
 /* ==========================================================
    GRANULAR SPECTRUM — EDITABLE CONTENT
@@ -520,11 +521,42 @@ window.GS_SITE = {
     title: "Visual\\n signal",
     caption: "Experimental Audiovisual Concert by Darkduction."
   },
+  /*
+  ============================================================
+  EDITAR ARTISTAS DEL SELLO — CAMBIA LOS DATOS AQUÍ
+  ============================================================
+  name     = nombre visible en la tarjeta
+  code     = identificador del artista
+  location = ciudad, país o descriptor
+  url      = enlace al perfil musical / web del artista
+
+  PARA AGREGAR ARTISTAS:
+  Copia un bloque { ... }, pégalo antes de ]; y cambia sus
+  datos. Separa cada bloque con una coma.
+  No elimines las llaves { }, las comillas ni el corchete ];
+  ============================================================
+  */
   artists: [
-    { name:"WORLDWIDE", code:"ARTIST / 001", location:"COLOMBIA", url:"https://granularspectrum.bandcamp.com/" },
-    { name:"SHAKTI", code:"ARTIST / 002", location:"WORLDWIDE", url:"https://granularspectrum.bandcamp.com/" },
-    { name:"DRKDCTN", code:"ARTIST / 003", location:"WORLDWIDE", url:"https://granularspectrum.bandcamp.com/" },
-    { name:"INDIVIDUO ATEMPORAL", code:"ARTIST / 004", location:"WORLDWIDE", url:"https://granularspectrum.bandcamp.com/" }
+    // ARTISTA 001
+    { name:"DARKDUCTION", code:"ARTIST / 001", location:"WORLDWIDE", url:"https://granularspectrum.de/darkduction.html" },
+
+    // ARTISTA 002
+    { name:"SHAKTI", code:"ARTIST / 002", location:"WORLDWIDE", url:"https://granularspectrum.de/shakti.html" },
+
+    // ARTISTA 003
+    { name:"DRKDCTN", code:"ARTIST / 003", location:"WORLDWIDE", url:"https://granularspectrum.de/darkduction.html" },
+
+    // ARTISTA 004
+    { name:"INDIVIDUO ATEMPORAL", code:"ARTIST / 004", location:"WORLDWIDE", url:"https://granularspectrum.bandcamp.com/" },
+	  
+	  // ARTISTA 005
+    { name:"Structur", code:"ARTIST / 005", location:"WORLDWIDE", url:"https://granularspectrum.bandcamp.com/" }
+
+    /*
+    EJEMPLO PARA AGREGAR EL ARTISTA 005:
+    ,{ name:"NOMBRE DEL ARTISTA", code:"ARTIST / 005", location:"COLOMBIA", url:"https://su-enlace.com/" }
+    Pega la línea antes del ]; y conserva la coma inicial.
+    */
   ],
   releases: [
     { code:"GS—001", title:"ATRUM", artist:"Darkduction", image:"https://res.cloudinary.com/rgriiass/image/upload/v1793747750/a4001183809_10.jpg", url:"https://darkductiongs.bandcamp.com/album/atrum", format:"AUDIO OBJECT" },
