@@ -269,13 +269,31 @@ body{background:#000!important}
 }
 </style>
 
+
+<style id="artists-mobile-menu-fix">
+@media (max-width:760px){
+  .topbar{position:fixed;isolation:isolate}
+  .nav{
+    top:100%;left:0;right:0;width:100%;
+    display:none;flex-direction:column;align-items:flex-start;
+    gap:20px;padding:22px 5vw;
+    background:rgba(0,0,0,.99);
+    border-bottom:1px solid var(--line);
+    z-index:31;
+  }
+  .nav.open{display:flex}
+  .nav a{display:block;width:100%;padding:5px 0}
+  .menu{display:block;position:relative;z-index:32;cursor:pointer;padding:10px 0 10px 12px}
+}
+</style>
+
 </head>
 <body>
 <canvas id="field"></canvas><canvas id="shader-field" aria-hidden="true"></canvas><canvas id="liquid-field" aria-hidden="true"></canvas>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><filter id="gsLiquid" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence id="gsTurbulence" type="fractalNoise" baseFrequency="0.009 0.014" numOctaves="2" seed="7" result="warp"/><feDisplacementMap id="gsDisplacement" in="SourceGraphic" in2="warp" scale="0" xChannelSelector="R" yChannelSelector="G"/></filter></svg><div class="noise"></div><div class="cursor" id="cursor"></div>
 <header class="topbar">
 <a class="brand brand-image" id="siteLogoLink" href="index.html" aria-label="Granular Spectrum home"><img id="siteLogo" alt="Granular Spectrum" src="" style="display:none"><span id="siteLogoFallback">GRANULAR <i>/</i> SPECTRUM®</span></a>
-<nav class="nav" id="nav"></nav><button class="menu" id="menu" aria-label="Open menu">MENU +</button></header>
+<nav class="nav" id="nav"></nav><button class="menu" id="menu" type="button" aria-label="Open menu" aria-controls="nav" aria-expanded="false">MENU +</button></header>
 
 <main class="wrap" id="top">
   <section class="artists-hero">
@@ -703,4 +721,3 @@ window.GS_SITE = {
  render();
 })();
 </script>
-
