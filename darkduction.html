@@ -383,6 +383,10 @@ html{scroll-behavior:smooth}
  .nav a:after{display:none}
 }
 
+
+.brand-image{display:flex;align-items:center;flex:0 0 auto;}
+.brand-image img{display:block;width:auto;height:auto;max-width:210px;max-height:42px;object-fit:contain;}
+@media(max-width:760px){.brand-image img{max-width:155px;max-height:34px;}}
 </style>
 </head>
 <body>
@@ -391,23 +395,34 @@ html{scroll-behavior:smooth}
 
 
 <header class="topbar">
- <a class="brand" href="https://granularspectrum.bandcamp.com/">GRANULAR <span>/</span> SPECTRUM®</a>
- <nav class="nav" id="nav"><a href="#about">ABOUT</a><a href="#visuals">VISUALS</a><a href="#discography">DISCOGRAPHY</a><a href="#video">VIDEO</a><a href="#connect">CONNECT</a></nav>
- <button class="menu" id="menu" type="button">MENU +</button>
+ <a class="brand brand-image" id="siteLogoLink" href="index.html" aria-label="Granular Spectrum home">
+  <img id="siteLogo" alt="Granular Spectrum" src="https://res.cloudinary.com/rgriiass/image/upload/v1793747620/Sin-t%C3%ADtulo-1-_Recuperado.png">
+ </a>
+ <nav class="nav" id="nav">
+  <a href="index.html">HOME</a>
+  <a href="releases.html">RELEASES</a>
+  <a href="artists.html">ARTISTS</a>
+  <a href="about.html">ABOUT</a>
+  <a href="archive.html">ARCHIVE</a>
+  <a href="contact.html">CONTACT</a>
+  <a href="https://granularspectrum.bandcamp.com/" target="_blank" rel="noopener">BANDCAMP ↗</a>
+ </nav>
+ <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">MENU +</button>
 </header>
 <main class="artist-page" id="top">
  <section class="hero">
-  <div class="archive-topline"><span>GRANULAR SPECTRUM® / DArkduction</span><span>COLOMBIA — WORLDWIDE</span></div>
+  <div class="archive-topline"><span>GRANULAR SPECTRUM® / ARTIST FILE 003</span><span>COLOMBIA — WORLDWIDE</span></div>
   <div class="hero-title-wrap">
    <div class="archive-index">[ ARTIST / PRODUCER / AUDIOVISUAL ]</div>
    <h1 class="hero-title"><span>DARK</span><span class="outline">DUCTION<span style="color:var(--acid);-webkit-text-stroke:0">.</span></span></h1>
    <div class="hero-intro"><p>Independent electronic music project exploring the darker edges of techno, sound experimentation and audiovisual expression.</p><a href="#about" class="archive-scroll"><i></i> ENTER ARTIST FILE</a></div>
   </div>
-  <div class="hero-bottom"><span>EXPERIMENTAL / deep / HYPNOTIC TECHNO</span><span>SCROLL TO EXPLORE ↓</span><span>EST. 2014</span></div>
+  <div class="hero-bottom"><span>EXPERIMENTAL / MINIMAL / HYPNOTIC TECHNO</span><span>SCROLL TO EXPLORE ↓</span><span>EST. 2014</span></div>
  </section>
 
  <section class="section" id="about">
-  <div class="section-head"><div><div class="index">[   ARTIST STATEMENT ]</div><h2>BEYOND<br>THE FRAME<span style="color:var(--acid)">.</span></h2></div><p>AN ONGOING EXPLORATION OF SOUND, MATTER, RHYTHM AND IMAGE.</p></div>
+  <div class="section-head"><div><div class="index">[   ARTIST STATEMENT ]</div><h2>BEYOND<br>THE FRAME<span style="color:var(--acid)">.</span></h2></div><p>&nbsp;</p>
+  </div>
   <div class="bio-grid">
    <p class="bio-large">Sound as a physical territory. Rhythm as a shifting structure. Noise as a form of memory.</p>
    <div class="bio-copy">
@@ -422,8 +437,8 @@ html{scroll-behavior:smooth}
   <div class="section-head"><div><div class="index">[   VISUAL DOCUMENTATION ]</div><h2>IMAGE<br>FRAGMENTS<span style="color:var(--acid)">.</span></h2></div><p>DOCUMENTATION / PRESS / LIVE.</p>
   </div>
   <div class="photo-grid">
-   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" alt="Darkduction artist portrait" loading="lazy" decoding="async"><div class="photo-label"><span>01 /</span> darkduction</div></a>
-   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" alt="Darkduction live and studio documentation" loading="lazy" decoding="async"><div class="photo-label"><span>02 /</span> LIVE</div></a>
+   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1100/v1793760093/drk.png" alt="Darkduction artist portrait" loading="lazy" decoding="async"><div class="photo-label"><span>01 /</span> ARTIST DOCUMENTATION</div></a>
+   <a class="photo" href="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" target="_blank" rel="noopener"><img src="https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_900/v1793760091/drk2.png" alt="Darkduction live and studio documentation" loading="lazy" decoding="async"><div class="photo-label"><span>02 /</span> LIVE / STUDIO</div></a>
   </div>
  </section>
 
@@ -456,13 +471,10 @@ html{scroll-behavior:smooth}
 (()=>{
  const RELEASES=[
   {year:"2026 / PRE-ORDER",title:"ATRUM",image:"https://res.cloudinary.com/rgriiass/image/upload/f_auto,q_auto,w_1000/v1793747750/a4001183809_10.jpg",url:"https://darkductiongs.bandcamp.com/album/atrum"},
-  {year:"2026",title:"LAST//SIGNAL",image:"here",url:"https://darkductiongs.bandcamp.com/"},
-  {year:"2026",title:"METASTABLE",image:"here",url:"https://darkductiongs.bandcamp.com/album/metastable"},
-  {year:"2025",title:"LETARGO",image:"here",url:"https://granularspectrum.bandcamp.com/album/letargo"},
-  {year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
-  {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"},
-	 {year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
-  {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"},{year:"2024",title:"CRIES FROM INSIDE",image:"here",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
+  {year:"2026",title:"LAST//SIGNAL",image:"",url:"https://darkductiongs.bandcamp.com/"},
+  {year:"2026",title:"METASTABLE",image:"",url:"https://darkductiongs.bandcamp.com/album/metastable"},
+  {year:"2025",title:"LETARGO",image:"",url:"https://granularspectrum.bandcamp.com/album/letargo"},
+  {year:"2024",title:"CRIES FROM INSIDE",image:"",url:"https://darkductiongs.bandcamp.com/album/cries-from-inside"},
   {year:"2023",title:"DECOMPOSITIONS",image:"https://f4.bcbits.com/img/a4016169093_10.jpg",url:"https://darkductiongs.bandcamp.com/album/decompositions"}
  ];
  const VIDEOS=[
