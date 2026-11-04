@@ -56,9 +56,13 @@ body.liquid-on .liquid-cursor-core{opacity:1;transform:translate(-50%,-50%) scal
 .topbar{z-index:30}
 @media(max-width:760px){
  .brand-image img{max-width:155px;max-height:34px}
- .nav{position:absolute;top:100%;left:0;right:0;padding:22px 5vw;background:#080808f2;display:none;flex-direction:column;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line)}
+ .nav{position:absolute;top:100%;left:0;right:0;width:100%;padding:22px 5vw;background:#080808f2;display:none;flex-direction:column;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);z-index:31}
  .nav.open{display:flex}
- .menu{display:block}
+ .menu{display:block;position:relative;z-index:32;cursor:pointer}
+}
+@media(min-width:761px){
+ .nav{display:flex!important;position:static}
+ .menu{display:none!important}
 }
 
 
@@ -641,6 +645,33 @@ window.GS_SITE = {
    return `<a href="${item.url}"${ext}>${item.label}</a>`;
  }).join('');
 
+ // Mobile navigation: accessible toggle and reliable close behavior.
+ const menu=document.getElementById('menu');
+ const mobileQuery=window.matchMedia('(max-width: 760px)');
+ function setMenuOpen(open){
+   const isOpen=!!open && mobileQuery.matches;
+   nav.classList.toggle('open',isOpen);
+   menu.setAttribute('aria-expanded',String(isOpen));
+   menu.setAttribute('aria-label',isOpen?'Close menu':'Open menu');
+   menu.textContent=isOpen?'CLOSE ×':'MENU +';
+ }
+ menu.setAttribute('aria-controls','nav');
+ menu.setAttribute('aria-expanded','false');
+ menu.addEventListener('click',()=>setMenuOpen(!nav.classList.contains('open')));
+ nav.addEventListener('click',event=>{
+   if(event.target.closest('a')) setMenuOpen(false);
+ });
+ document.addEventListener('click',event=>{
+   if(mobileQuery.matches && nav.classList.contains('open') &&
+      !nav.contains(event.target) && !menu.contains(event.target)) setMenuOpen(false);
+ });
+ document.addEventListener('keydown',event=>{
+   if(event.key==='Escape') setMenuOpen(false);
+ });
+ const resetMenuForDesktop=event=>{if(!event.matches)setMenuOpen(false);};
+ if(mobileQuery.addEventListener) mobileQuery.addEventListener('change',resetMenuForDesktop);
+ else mobileQuery.addListener(resetMenuForDesktop);
+
  const grid=document.getElementById('releaseGrid');
  if(grid) grid.innerHTML=(cfg.releases||[]).map((r,i)=>`
    <a class="release reveal" href="${r.url}" target="_blank" rel="noopener">
@@ -736,4 +767,3 @@ window.GS_SITE = {
  render();
 })();
 </script>
-
